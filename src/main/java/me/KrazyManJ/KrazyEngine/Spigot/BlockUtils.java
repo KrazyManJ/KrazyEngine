@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @SuppressWarnings("unused")
 public final class BlockUtils {
@@ -20,7 +21,7 @@ public final class BlockUtils {
         for(int x = location.getBlockX() - radius; x <= location.getBlockX() + radius; x++) {
             for(int y = location.getBlockY() - radius; y <= location.getBlockY() + radius; y++) {
                 for(int z = location.getBlockZ() - radius; z <= location.getBlockZ() + radius; z++) {
-                    blocks.add(location.getWorld().getBlockAt(x, y, z));
+                    blocks.add(Objects.requireNonNull(location.getWorld()).getBlockAt(x, y, z));
                 }
             }
         }

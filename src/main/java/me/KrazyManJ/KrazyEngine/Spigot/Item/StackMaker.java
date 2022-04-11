@@ -13,12 +13,13 @@ import java.util.List;
 import java.util.UUID;
 
 @SuppressWarnings({"UnusedReturnValue", "unused"})
-public final class StackMaker {
+public class StackMaker {
     private final ItemStack stack;
 
     public StackMaker(Material mat) {
         stack = new ItemStack(mat);
     }
+    public StackMaker(ItemStack stack) { this.stack = stack.clone(); }
 
     public StackMaker amount(int amount){
         stack.setAmount(amount);
