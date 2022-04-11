@@ -2,7 +2,10 @@ package me.KrazyManJ.KrazyEngine.Spigot;
 import org.bukkit.plugin.java.JavaPlugin;
 
 @SuppressWarnings("unused")
-public class SpigotMain extends JavaPlugin {
+public final class SpigotMain extends JavaPlugin {
+
+    @Deprecated private SpigotMain(){}
+
     @Override
     public void onEnable() {
 

@@ -10,6 +10,9 @@ import java.util.Objects;
 
 @SuppressWarnings("unused")
 public final class BlockUtils {
+
+    @Deprecated private BlockUtils(){}
+
     public static boolean isTop(Player player, Block block) {
         Location start = player.getEyeLocation().clone();
         while (!start.getBlock().equals(block) && start.distance(player.getEyeLocation()) < 6.0D)

@@ -2,6 +2,9 @@ package me.KrazyManJ.KrazyEngine.Any;
 
 @SuppressWarnings("unused")
 public final class Style {
+
+    @Deprecated private Style() {}
+
     public static String fancyText(String text){
         return text.replaceAll("a", "?")
                 .replaceAll("b", "?").replaceAll("c", "?")
