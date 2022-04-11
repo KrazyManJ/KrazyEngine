@@ -1,4 +1,4 @@
-package me.KrazyManJ.KrazyEngine.Item;
+package me.KrazyManJ.KrazyEngine.Spigot.Item;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;

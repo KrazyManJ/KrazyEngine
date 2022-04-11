@@ -1,11 +1,9 @@
-package me.KrazyManJ.KrazyEngine.Item;
+package me.KrazyManJ.KrazyEngine.Spigot.Item;
 
-import me.KrazyManJ.KrazyEngine.Text.ColorUtils;
+import me.KrazyManJ.KrazyEngine.Any.ColorUtils;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
-import org.bukkit.craftbukkit.v1_17_R1.entity.CraftItem;
-import org.bukkit.craftbukkit.v1_17_R1.inventory.CraftItemStack;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;

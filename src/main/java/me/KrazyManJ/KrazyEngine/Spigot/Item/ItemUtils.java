@@ -1,4 +1,4 @@
-package me.KrazyManJ.KrazyEngine.Item;
+package me.KrazyManJ.KrazyEngine.Spigot.Item;
 
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;

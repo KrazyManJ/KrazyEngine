@@ -1,4 +1,4 @@
-package me.KrazyManJ.KrazyEngine.Block;
+package me.KrazyManJ.KrazyEngine.Spigot;
 
 import org.bukkit.Location;
 import org.bukkit.block.Block;

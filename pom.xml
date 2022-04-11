@@ -8,9 +8,12 @@
     <artifactId>KrazyEngine</artifactId>
     <version>1.0.0</version>
 
+
+
     <properties>
         <maven.compiler.source>16</maven.compiler.source>
         <maven.compiler.target>16</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
@@ -19,6 +22,12 @@
             <artifactId>spigot</artifactId>
             <version>1.17-R0.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>net.md-5</groupId>
+            <artifactId>bungeecord-api</artifactId>
+            <version>1.18-R0.1-SNAPSHOT</version>
+        </dependency>
+
     </dependencies>
 
     <build>

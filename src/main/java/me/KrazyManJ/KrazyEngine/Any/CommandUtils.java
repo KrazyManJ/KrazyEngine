@@ -1,4 +1,4 @@
-package me.KrazyManJ.KrazyEngine.Commands;
+package me.KrazyManJ.KrazyEngine.Any;
 
 import org.apache.commons.lang.StringUtils;
 

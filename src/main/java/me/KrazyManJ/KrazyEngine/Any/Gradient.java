@@ -1,8 +1,8 @@
-package me.KrazyManJ.KrazyEngine.Text;
+package me.KrazyManJ.KrazyEngine.Any;
 
 import net.md_5.bungee.api.ChatColor;
 
-public class Gradient {
+public final class Gradient {
     public static String rgb(String text, String color1, String color2){
         int[] rgb1 = {Integer.valueOf( color1.substring( 1, 3 ), 16 ), Integer.valueOf( color1.substring( 3, 5 ), 16 ), Integer.valueOf( color1.substring( 5, 7 ), 16 )};
         int[] rgb2 = {Integer.valueOf( color2.substring( 1, 3 ), 16 ), Integer.valueOf( color2.substring( 3, 5 ), 16 ), Integer.valueOf( color2.substring( 5, 7 ), 16 )};

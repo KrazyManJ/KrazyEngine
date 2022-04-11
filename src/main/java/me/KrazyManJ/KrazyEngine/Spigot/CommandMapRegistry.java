@@ -1,6 +1,5 @@
-package me.KrazyManJ.KrazyEngine.Commands;
+package me.KrazyManJ.KrazyEngine.Spigot;
 
-import me.KrazyManJ.KrazyEngine.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandMap;
