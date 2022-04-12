@@ -1,4 +1,4 @@
-package me.KrazyManJ.KrazyEngine.Any;
+package me.KrazyManJ.KrazyEngine.Any.Text;
 
 import net.md_5.bungee.api.ChatColor;
 

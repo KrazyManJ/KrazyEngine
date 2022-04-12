@@ -1,6 +1,6 @@
 package me.KrazyManJ.KrazyEngine.Spigot.Item;
 
-import me.KrazyManJ.KrazyEngine.Any.ColorUtils;
+import me.KrazyManJ.KrazyEngine.Any.Text.ColorUtils;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
