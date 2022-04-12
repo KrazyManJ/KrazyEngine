@@ -6,7 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.*;
 
 @SuppressWarnings({"unused", "UnstableApiUsage"})
-public class SpigotSourceManager {
+public final class SpigotSourceManager {
 
     @Deprecated private SpigotSourceManager() {}
 

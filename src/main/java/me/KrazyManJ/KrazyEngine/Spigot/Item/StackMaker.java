@@ -9,6 +9,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,9 +17,7 @@ import java.util.UUID;
 public class StackMaker {
     private final ItemStack stack;
 
-    public StackMaker(Material mat) {
-        stack = new ItemStack(mat);
-    }
+    public StackMaker(Material mat) { stack = new ItemStack(mat); }
     public StackMaker(ItemStack stack) { this.stack = stack.clone(); }
 
     public StackMaker amount(int amount){
@@ -29,7 +28,7 @@ public class StackMaker {
     public StackMaker displayName(String name){
         ItemMeta m = stack.getItemMeta();
         assert m != null;
-        m.setDisplayName(ColorUtils.colorize(name));
+        m.setDisplayName(ColorUtils.colorizeHex(name));
         stack.setItemMeta(m);
         return this;
     }
@@ -37,14 +36,14 @@ public class StackMaker {
     public StackMaker lore(String ...lore){
         ItemMeta m = stack.getItemMeta();
         assert m != null;
-        m.setLore(ColorUtils.colorize(List.of(lore)));
+        m.setLore(ColorUtils.colorizeHex(List.of(lore)));
         stack.setItemMeta(m);
         return this;
     }
     public StackMaker lore(List<String> lore){
         ItemMeta m = stack.getItemMeta();
         assert m != null;
-        m.setLore(ColorUtils.colorize(lore));
+        m.setLore(ColorUtils.colorizeHex(lore));
         stack.setItemMeta(m);
         return this;
     }

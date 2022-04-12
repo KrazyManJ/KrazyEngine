@@ -6,7 +6,7 @@ import net.md_5.bungee.api.plugin.Plugin;
 import java.io.*;
 
 @SuppressWarnings({"unused", "UnstableApiUsage"})
-public class BungeeSourceManager {
+public final class BungeeSourceManager {
 
     @Deprecated private BungeeSourceManager() {}
 

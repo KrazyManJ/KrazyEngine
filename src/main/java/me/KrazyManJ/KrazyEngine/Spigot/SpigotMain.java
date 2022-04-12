@@ -3,16 +3,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 @SuppressWarnings("unused")
 public final class SpigotMain extends JavaPlugin {
-
-    @Deprecated private SpigotMain(){}
+    @Override
+    public void onEnable() {super.onEnable();}
 
     @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
-    }
+    public void onDisable() {super.onDisable();}
 }
