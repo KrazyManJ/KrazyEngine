@@ -1,11 +1,11 @@
 package me.KrazyManJ.KrazyEngine.BungeeCord;
 
-import com.google.common.io.ByteStreams;
 import net.md_5.bungee.api.plugin.Plugin;
 
 import java.io.*;
+import java.nio.file.Files;
 
-@SuppressWarnings({"unused", "UnstableApiUsage"})
+@SuppressWarnings({"unused"})
 public final class BungeeSourceManager {
 
     @Deprecated private BungeeSourceManager() {}
@@ -14,8 +14,7 @@ public final class BungeeSourceManager {
         InputStream in = plugin.getResourceAsStream(path);
         OutputStream out;
         try {
-            out = new FileOutputStream(file);
-            ByteStreams.copy(in, out);
+            Files.copy(in,file.toPath());
         } catch (IOException e) {
             e.printStackTrace();
         }

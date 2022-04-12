@@ -1,6 +1,6 @@
 package me.KrazyManJ.KrazyEngine.Any.Component;
 
-import me.KrazyManJ.KrazyEngine.Any.Component.Enums.KeybindID;
+import me.KrazyManJ.KrazyEngine.Any.Component.TranslateEnums.KeybindID;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.KeybindComponent;
 import net.md_5.bungee.api.chat.TranslatableComponent;

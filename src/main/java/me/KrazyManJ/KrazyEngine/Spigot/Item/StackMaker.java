@@ -36,7 +36,7 @@ public class StackMaker {
     public StackMaker lore(String ...lore){
         ItemMeta m = stack.getItemMeta();
         assert m != null;
-        m.setLore(ColorUtils.colorizeHex(List.of(lore)));
+        m.setLore(ColorUtils.colorizeHex(Arrays.asList(lore)));
         stack.setItemMeta(m);
         return this;
     }

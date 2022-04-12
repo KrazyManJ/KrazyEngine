@@ -4,21 +4,25 @@ import me.KrazyManJ.KrazyEngine.Spigot.CommandMapRegistry;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Marker;
+import org.apache.logging.log4j.core.Appender;
 import org.apache.logging.log4j.core.LogEvent;
 import org.apache.logging.log4j.core.Logger;
 import org.apache.logging.log4j.core.filter.AbstractFilter;
 import org.apache.logging.log4j.message.Message;
+import org.bukkit.Bukkit;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public final class CommandLogFilter{
 
     public static boolean validRegistered = false;
+    private static final Logger logger = (Logger) LogManager.getRootLogger();
 
     public static void registerValidFilter(){
         if (validRegistered) return;
-        ((Logger) LogManager.getRootLogger()).addFilter(new vFilter());
+        logger.addFilter(new vFilter());
     }
 
 
@@ -30,7 +34,8 @@ public final class CommandLogFilter{
         return this;
     }
     public void register(){
-        ((Logger) LogManager.getRootLogger()).addFilter(new aFilter());
+        if (commands.size() == 0) return;
+        logger.addFilter(new aFilter());
     }
 
 
@@ -59,7 +64,9 @@ public final class CommandLogFilter{
             if (msg == null) return Result.NEUTRAL;
             if (!msg.contains("issued server command:")) return Result.NEUTRAL;
 
-            for (String command : commands) if (msg.contains(command)) return Result.DENY;
+            for (String command : commands) if (msg.contains(command)) {
+                return Result.DENY;
+            }
             return Result.NEUTRAL;
         }
     }

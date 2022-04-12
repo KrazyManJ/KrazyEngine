@@ -1,11 +1,11 @@
 package me.KrazyManJ.KrazyEngine.Spigot;
 
-import com.google.common.io.ByteStreams;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.*;
+import java.nio.file.Files;
 
-@SuppressWarnings({"unused", "UnstableApiUsage"})
+@SuppressWarnings({"unused"})
 public final class SpigotSourceManager {
 
     @Deprecated private SpigotSourceManager() {}
@@ -14,9 +14,8 @@ public final class SpigotSourceManager {
         InputStream in = plugin.getResource(path);
         OutputStream out;
         try {
-            out = new FileOutputStream(file);
             assert in != null;
-            ByteStreams.copy(in, out);
+            Files.copy(in,file.toPath());
         } catch (IOException e) {
             e.printStackTrace();
         }
