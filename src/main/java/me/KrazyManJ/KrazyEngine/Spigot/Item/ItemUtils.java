@@ -11,13 +11,12 @@ public final class ItemUtils {
 
     @Deprecated private ItemUtils() {}
 
-    public static ItemStack makeShiny(ItemStack item) {
+    public static void makeShiny(ItemStack item) {
         if (!item.getType().equals(Material.BOW)) item.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE,1);
         else item.addUnsafeEnchantment(Enchantment.DIG_SPEED,1);
         ItemMeta mt = item.getItemMeta();
         assert mt != null;
         mt.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         item.setItemMeta(mt);
-        return item;
     }
 }
