@@ -19,7 +19,7 @@ import java.util.UUID;
 @SuppressWarnings({"UnusedReturnValue", "unused"})
 public class StackMaker {
     private final ItemStack stack;
-    private static final NamespacedKey unstackableKey = new NamespacedKey("krazyengine","unstackable");
+
 
     public StackMaker(Material mat) { stack = new ItemStack(mat); }
     public StackMaker(ItemStack stack) { this.stack = stack.clone(); }
@@ -90,11 +90,7 @@ public class StackMaker {
     }
 
     public StackMaker unstackable(){
-        ItemMeta m = stack.getItemMeta();
-        assert m != null;
-        m.getPersistentDataContainer().set(unstackableKey, PersistentDataType.LONG,
-                Bukkit.getServer().getWorlds().get(0).getGameTime());
-        stack.setItemMeta(m);
+        ItemUtils.makeUnstackable(stack);
         return this;
     }
 

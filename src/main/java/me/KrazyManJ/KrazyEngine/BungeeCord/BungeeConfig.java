@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.IOException;
 
 @SuppressWarnings({"unused", "ResultOfMethodCallIgnored"})
-public class BungeeConfig {
+public final class BungeeConfig {
     private Configuration configuration;
     private final File file;
 
@@ -19,7 +19,7 @@ public class BungeeConfig {
         }
         load();
     }
-    public Configuration getConf(){
+    public Configuration getConfig(){
         return configuration;
     }
     public void load(){

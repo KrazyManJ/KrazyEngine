@@ -11,7 +11,7 @@ public final class ColorUtils {
 
     @Deprecated private ColorUtils() {}
 
-    private static final Pattern hex = Pattern.compile("(?i)&#[0-9a-f]{6}");
+    private static final Pattern hex = Pattern.compile("(?mi)&#[0-9a-f]{6}");
 
     public static String colorize(String text){
         return ChatColor.translateAlternateColorCodes('&',text);
