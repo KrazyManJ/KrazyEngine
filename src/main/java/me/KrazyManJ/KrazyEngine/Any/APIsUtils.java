@@ -12,6 +12,9 @@ import java.net.URLConnection;
 
 @SuppressWarnings("unused")
 public final class APIsUtils {
+
+    @Deprecated private APIsUtils() {}
+
     public static JsonElement fetchJson(String link) {
         try {
             URL url = new URL(link);
