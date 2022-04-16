@@ -1,4 +1,4 @@
-package me.KrazyManJ.KrazyEngine.Any;
+package me.KrazyManJ.KrazyEngine.Any.Cooldown;
 
 import java.util.concurrent.TimeUnit;
 

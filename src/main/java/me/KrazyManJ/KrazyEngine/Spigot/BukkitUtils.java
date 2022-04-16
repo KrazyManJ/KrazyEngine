@@ -13,4 +13,7 @@ public final class BukkitUtils {
         for (Player p : Bukkit.getOnlinePlayers()) pl.add(p.getName());
         return pl;
     }
+    public static boolean isAnyPlayerOnline(){
+        return Bukkit.getOnlinePlayers().size() > 0;
+    }
 }

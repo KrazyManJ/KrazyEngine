@@ -41,7 +41,7 @@ public final class MaterialAlias {
                 Material.DARK_OAK_LOG
         ).contains(m);
     }
-    private static boolean isStone(Material m){
+    private static boolean isNaturalStone(Material m){
         return Arrays.asList(
                 Material.STONE,
                 Material.ANDESITE,
