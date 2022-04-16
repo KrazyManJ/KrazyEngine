@@ -1,28 +1,34 @@
 package me.KrazyManJ.KrazyEngine.Spigot.Item;
 
 import me.KrazyManJ.KrazyEngine.Any.Text.ColorUtils;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.persistence.PersistentDataType;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
 @SuppressWarnings({"UnusedReturnValue", "unused"})
-public class StackMaker {
+public final class StackMaker {
+
+    public static @NotNull StackMaker fromSkull(@NotNull String base64){
+        return new StackMaker(Skull.fromValue(base64));
+    }
+    public static @NotNull StackMaker fromSkull(@NotNull OfflinePlayer player){
+        return new StackMaker(Skull.ofPlayer(player));
+    }
+
     private final ItemStack stack;
 
-
-    public StackMaker(Material mat) { stack = new ItemStack(mat); }
-    public StackMaker(ItemStack stack) { this.stack = stack.clone(); }
+    public StackMaker(@NotNull Material mat) { stack = new ItemStack(mat); }
+    private StackMaker(@NotNull ItemStack stack) { this.stack = stack.clone(); }
 
     public StackMaker amount(int amount){
         stack.setAmount(amount);

@@ -1,7 +1,10 @@
 package me.KrazyManJ.KrazyEngine.Any;
 
 @SuppressWarnings("unused")
-public class DataHolder {
+public final class DataHolder {
+
+    @Deprecated private DataHolder() {}
+
     public record One<T1>(T1 t1){}
     public record Two<T1,T2>(T1 t1, T2 t2){}
     public record Three<T1,T2,T3>(T1 t1, T2 t2, T3 t3){}
