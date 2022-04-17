@@ -5,7 +5,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Level;
 
+@SuppressWarnings("unused")
 public final class Log {
+
+    @Deprecated private Log() {}
+
     public static void info(String message){ Bukkit.getLogger().log(Level.INFO,message); }
     public static void info(JavaPlugin plugin, String message){ plugin.getLogger().log(Level.INFO,message); }
 
