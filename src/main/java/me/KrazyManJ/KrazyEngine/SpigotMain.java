@@ -1,5 +1,8 @@
-package me.KrazyManJ.KrazyEngine.Spigot;
+package me.KrazyManJ.KrazyEngine;
 
+import me.KrazyManJ.KrazyEngine.Any.Text.BracketHolder;
+import me.KrazyManJ.KrazyEngine.Any.Text.PlaceholderBuilder;
+import me.KrazyManJ.KrazyEngine.Spigot.CommandMapRegistry;
 import me.KrazyManJ.KrazyEngine.Spigot.Item.ItemUtils;
 import me.KrazyManJ.KrazyEngine.Spigot.Item.StackMaker;
 import org.bukkit.Bukkit;
@@ -19,7 +22,6 @@ public final class SpigotMain extends JavaPlugin {
             @Override
             public boolean execute(@NotNull CommandSender commandSender, @NotNull String s, @NotNull String[] strings) {
                 if (!(commandSender instanceof Player p)) return false;
-
                 p.getInventory().addItem(new StackMaker(Material.STONE).unstackable().make());
                 Bukkit.broadcastMessage(
                     "Compared: "+ItemUtils.compareUnstackable(p.getInventory().getItemInMainHand(),p.getInventory().getItemInOffHand())

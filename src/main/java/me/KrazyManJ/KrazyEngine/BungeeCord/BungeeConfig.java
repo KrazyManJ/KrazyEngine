@@ -19,9 +19,7 @@ public final class BungeeConfig {
         }
         load();
     }
-    public Configuration getConfig(){
-        return configuration;
-    }
+    public Configuration get(){ return configuration; }
     public void load(){
         try {
             configuration = ConfigurationProvider.getProvider(YamlConfiguration.class).load(file);

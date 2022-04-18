@@ -1,5 +1,6 @@
 package me.KrazyManJ.KrazyEngine.Any;
 
+import me.KrazyManJ.KrazyEngine.Any.Text.StringUtils;
 import org.intellij.lang.annotations.Language;
 
 import java.sql.*;
@@ -15,7 +16,7 @@ public final class MySQL {
     public void connect(String host, int port, String username, String password){
         try {
             connection = DriverManager.getConnection(
-                    StringFormat.format("jdbc:mysql://{0}:{1}?autoReconnect=true",host,port), username, password
+                    StringUtils.format("jdbc:mysql://{0}:{1}?autoReconnect=true",host,port), username, password
             );
         } catch (SQLException e) { e.printStackTrace(); }
     }

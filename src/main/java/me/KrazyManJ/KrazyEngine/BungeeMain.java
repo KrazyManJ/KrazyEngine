@@ -1,4 +1,4 @@
-package me.KrazyManJ.KrazyEngine.BungeeCord;
+package me.KrazyManJ.KrazyEngine;
 
 import net.md_5.bungee.api.plugin.Plugin;
 

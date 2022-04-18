@@ -101,9 +101,4 @@ public final class BungeeMessageChannel {
         if (exec == null) throw new NoOnlinePlayerException();
         return exec;
     }
-
-    private enum ForwardType{
-        ALL,
-        ONLINE
-    }
 }
