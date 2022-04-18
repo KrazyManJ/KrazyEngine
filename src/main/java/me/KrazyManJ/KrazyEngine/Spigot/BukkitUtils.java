@@ -16,4 +16,7 @@ public final class BukkitUtils {
     public static boolean isAnyPlayerOnline(){
         return Bukkit.getOnlinePlayers().size() > 0;
     }
+    public static String getVersion(){
+        return Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3];
+    }
 }

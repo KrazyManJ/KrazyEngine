@@ -2,7 +2,7 @@ package me.KrazyManJ.KrazyEngine.Spigot.Item;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
-import me.KrazyManJ.KrazyEngine.Any.RegexContainer;
+import me.KrazyManJ.KrazyEngine.Any.Regex.RegexList;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.inventory.ItemStack;
@@ -29,7 +29,7 @@ public final class Skull {
     }
 
     public static ItemStack fromValue(String base64){
-        if (!base64.matches(RegexContainer.base64.pattern()))
+        if (!base64.matches(RegexList.base64.pattern()))
             try { throw new Exception(""); } catch (Exception e) { e.printStackTrace(); }
         ItemStack head = new ItemStack(Material.PLAYER_HEAD);
         SkullMeta meta = (SkullMeta) head.getItemMeta();
