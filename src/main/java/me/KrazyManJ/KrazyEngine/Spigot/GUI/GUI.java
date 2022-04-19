@@ -23,8 +23,8 @@ public final class GUI {
     private Listener closeH;
     private boolean uncloseable;
 
-    public GUI(JavaPlugin plugin) {
-        inv = Bukkit.createInventory(null,45,"Hello!");
+    public GUI(JavaPlugin plugin,int rows,String title) {
+        inv = Bukkit.createInventory(null,rows*9,title);
         this.plugin = plugin;
     }
     public Inventory getInventory(){

@@ -7,9 +7,7 @@ import net.md_5.bungee.api.chat.TextComponent;
 @SuppressWarnings("unused")
 public final class ComponentUtils {
 
-    @Deprecated
-    private ComponentUtils() {
-    }
+    @Deprecated private ComponentUtils() {}
     
     public static BaseComponent toSingle(BaseComponent[] components){
         BaseComponent rc = new TextComponent("");
