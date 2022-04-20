@@ -36,34 +36,34 @@ public final class ComponentMaker {
     }
     public static final class Translate {
         @Deprecated private Translate() {}
-        public static TranslatableComponent makeTranslate(ItemStack i){
+        public static TranslatableComponent make(ItemStack i){
             return new TranslatableComponent((i.getType().isBlock() ? "block" : "item")+".minecraft."+i.getType().getKey().getKey());
         }
-        public static TranslatableComponent makeTranslate(Material m){
+        public static TranslatableComponent make(Material m){
             return new TranslatableComponent((m.isBlock() ? "block" : "item")+".minecraft."+m.getKey().getKey());
         }
-        public static TranslatableComponent makeTranslate(Block b){
+        public static TranslatableComponent make(Block b){
             return new TranslatableComponent("block.minecraft."+b.getType().getKey().getKey());
         }
-        public static TranslatableComponent makeTranslate(Entity e){
+        public static TranslatableComponent make(Entity e){
             return new TranslatableComponent("entity.minecraft."+e.getType().getKey().getKey());
         }
-        public static TranslatableComponent makeTranslate(EntityType e){
+        public static TranslatableComponent make(EntityType e){
             return new TranslatableComponent("entity.minecraft."+e.getKey().getKey());
         }
-        public static TranslatableComponent makeTranslate(Villager.Profession v){
+        public static TranslatableComponent make(Villager.Profession v){
             return new TranslatableComponent("entity.minecraft.villager."+v.getKey().getKey());
         }
-        public static TranslatableComponent makeTranslate(Biome b) {
+        public static TranslatableComponent make(Biome b) {
             return new TranslatableComponent("biome.minecraft."+b.getKey().getKey());
         }
-        public static TranslatableComponent makeTranslate(GameMode m) {
+        public static TranslatableComponent make(GameMode m) {
             return new TranslatableComponent("gameMode."+m);
         }
-        public static TranslatableComponent makeTranslate(ChatColor c) {
+        public static TranslatableComponent make(ChatColor c) {
             return new TranslatableComponent("color.minecraft."+c.toString().toLowerCase());
         }
-        public static TranslatableComponent makeTranslate(Statistic s) {
+        public static TranslatableComponent make(Statistic s) {
             return new TranslatableComponent("stat.minecraft."+s.getKey().getKey());
         }
     }

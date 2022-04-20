@@ -8,7 +8,7 @@ import net.md_5.bungee.api.chat.TextComponent;
 import java.awt.*;
 
 @SuppressWarnings("unused")
-public class BarLine {
+public final class BarLine {
     private char symbol;
     public BarLine setSymbol(char symbol) {this.symbol = symbol;return this;}
     public char getSymbol() {return symbol;}
