@@ -1,4 +1,4 @@
-package me.KrazyManJ.KrazyEngine.Any.Component.TranslateEnums;
+package me.KrazyManJ.KrazyEngine.Any.Component.Translate;
 
 @SuppressWarnings("unused")
 public enum ItemGroup {
