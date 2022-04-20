@@ -3,6 +3,8 @@ package me.KrazyManJ.KrazyEngine.Spigot;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandMap;
+import org.bukkit.command.CommandSender;
+import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Field;
 
@@ -26,7 +28,7 @@ public final class CommandMapRegistry {
         commandMap.register(commandExecutor.getName(),commandExecutor);
     }
 
-    public static void register(String id,Command commandExecutor){
+    public static void register(String id,Kommand commandExecutor){
         commandMap.register(id, commandExecutor);
     }
 
@@ -36,5 +38,17 @@ public final class CommandMapRegistry {
 
     public static boolean isValidCommand(String commandLabel){
         return commandMap.getCommand(commandLabel) != null;
+    }
+
+    public static abstract class Kommand extends Command{
+
+        public Kommand(@NotNull String name) {
+            super(name);
+        }
+
+        @Override
+        public boolean execute(@NotNull CommandSender sender, @NotNull String label, @NotNull String[] args) {
+            return false;
+        }
     }
 }
