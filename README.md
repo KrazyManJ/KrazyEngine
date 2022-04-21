@@ -2,6 +2,8 @@
 
 <h1 align=center >KrazyEngine</h1>
 
+***
+
 <h2 align=center>Features:</h2>
 
 ### Any usage:
