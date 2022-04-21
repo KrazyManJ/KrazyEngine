@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@SuppressWarnings("unused")
 public final class TabCompleteUtils {
 
     @Deprecated private TabCompleteUtils() {}

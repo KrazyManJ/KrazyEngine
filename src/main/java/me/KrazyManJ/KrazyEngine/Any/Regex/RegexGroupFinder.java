@@ -7,11 +7,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 @SuppressWarnings("unused")
-public class RegexGroupFinder {
+public final class RegexGroupFinder {
 
+    private Pattern pattern;
     private final String defaultGroupName;
     private final HashMap<String, String> groups = new HashMap<>();
 
@@ -23,28 +26,30 @@ public class RegexGroupFinder {
         return this;
     }
     public Pattern buildPattern(){
-        if (groups.size() == 0) return Pattern.compile("(?<"+defaultGroupName+">.+)");
-        List<String> grp = new ArrayList<>();
-        for (String key : groups.keySet()) grp.add("(?<"+key+">"+groups.get(key)+")");
-        return Pattern.compile(String.join("|",grp)+"|(?<"+defaultGroupName+">(?:(?!"+String.join("|",groups.values())+").)+)");
+        if (pattern == null || !pattern.pattern().equals(buildRegex())) pattern = Pattern.compile(buildRegex());
+        return pattern;
+    }
+    public String buildRegex(){
+        return groups.size() == 0
+                ? "(?<"+defaultGroupName+">.+)"
+                : groups.entrySet().stream().map(t -> "(?<"+t.getKey()+">"+t.getValue()+")")
+                        .collect(Collectors.joining("|"))+
+                        "|(?<"+defaultGroupName+">(?:(?!"+String.join("|",groups.values())+").)+)"
+        ;
     }
 
-    public List<GroupMatch> match(String text){
-        List<GroupMatch> r = new ArrayList<>();
-
+    public List<RegexGroupMatch> match(String text){
+        List<RegexGroupMatch> r = new ArrayList<>();
         Matcher m = buildPattern().matcher(text);
         while (m.find()){
-            for (String g : groups.keySet()){
-                if (m.group(defaultGroupName) != null) {
-                    r.add(new GroupMatch(defaultGroupName,m.group(defaultGroupName)));
-                    break;
-                }
+            for (String g : Stream.concat(groups.keySet().stream(), Stream.of(defaultGroupName)).toList()){
                 if (m.group(g) != null) {
-                    r.add(new GroupMatch(g,m.group(g)));
+                    r.add(new RegexGroupMatch(g,m.group(g)));
                     break;
                 }
             }
         }
         return r;
     }
+
 }
