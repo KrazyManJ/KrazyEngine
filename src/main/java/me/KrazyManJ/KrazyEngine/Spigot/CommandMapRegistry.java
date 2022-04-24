@@ -30,7 +30,7 @@ public final class CommandMapRegistry {
         }
     }
 
-    public static void register(Command commandExecutor){
+    public static synchronized void register(Command commandExecutor){
         commandMap.register(commandExecutor.getName(),commandExecutor);
     }
 
