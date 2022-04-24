@@ -4,21 +4,27 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandMap;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.SimpleCommandMap;
+import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerCommandSendEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 
 @SuppressWarnings("unused")
 public final class CommandMapRegistry {
 
     @Deprecated private CommandMapRegistry() {}
 
-    private static CommandMap commandMap;
+    private static SimpleCommandMap commandMap;
     static {
         try {
             Field f = Bukkit.getServer().getClass().getDeclaredField("commandMap");
             f.setAccessible(true);
-            commandMap = (CommandMap) f.get(Bukkit.getServer());
+            commandMap = (SimpleCommandMap) f.get(Bukkit.getServer());
         } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
         }
@@ -28,7 +34,7 @@ public final class CommandMapRegistry {
         commandMap.register(commandExecutor.getName(),commandExecutor);
     }
 
-    public static void register(String id,Kommand commandExecutor){
+    public static synchronized void register(String id,Command commandExecutor){
         commandMap.register(id, commandExecutor);
     }
 
@@ -38,17 +44,5 @@ public final class CommandMapRegistry {
 
     public static boolean isValidCommand(String commandLabel){
         return commandMap.getCommand(commandLabel) != null;
-    }
-
-    public static abstract class Kommand extends Command{
-
-        public Kommand(@NotNull String name) {
-            super(name);
-        }
-
-        @Override
-        public boolean execute(@NotNull CommandSender sender, @NotNull String label, @NotNull String[] args) {
-            return false;
-        }
     }
 }

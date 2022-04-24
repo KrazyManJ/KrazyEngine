@@ -4,6 +4,7 @@ package me.KrazyManJ.KrazyEngine;
 import me.KrazyManJ.KrazyEngine.Any.Command.TabCompleteUtils;
 import me.KrazyManJ.KrazyEngine.Any.Text.RomanNumber;
 import me.KrazyManJ.KrazyEngine.Spigot.CommandMapRegistry;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;
@@ -22,23 +23,6 @@ public final class SpigotMain extends JavaPlugin {
     @Override
     public void onEnable() {
         super.onEnable();
-        CommandMapRegistry.register(new Command("testengine") {
-            @Override
-            public boolean execute(@NotNull CommandSender sender, @NotNull String label, @NotNull String[] args) {
-                if (!(sender instanceof Player p)) return false;
-                FurnaceRecipe r = new FurnaceRecipe(NamespacedKey.minecraft("test"), new ItemStack(Material.STONE),Material.STONE,1,1);
-
-
-
-
-                return true;
-            }
-            @NotNull
-            @Override
-            public List<String> tabComplete(@NotNull CommandSender sender, @NotNull String label, @NotNull String[] args) throws IllegalArgumentException {
-                return TabCompleteUtils.clearTabComplete();
-            }
-        });
     }
 
     @Override
