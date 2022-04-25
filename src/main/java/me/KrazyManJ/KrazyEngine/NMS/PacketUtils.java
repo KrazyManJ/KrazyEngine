@@ -25,6 +25,7 @@ public final class PacketUtils {
     //BlockPosition
     private static Constructor<?> blockPosition;
 
+    //IChatBaseComponent
     private static Method fromJson;
 
     static {
@@ -39,7 +40,6 @@ public final class PacketUtils {
             blockPosition = Class.forName("net.minecraft.core.BlockPosition").getConstructor(int.class,int.class,int.class);
 
             //IChatBaseComponent
-            Class<?> iChatBaseComponent = Class.forName("net.minecraft.network.chat.IChatBaseComponent");
             fromJson = Class.forName("net.minecraft.network.chat.IChatBaseComponent$ChatSerializer").getDeclaredMethod("a",String.class);
 
         } catch (ClassNotFoundException | NoSuchMethodException | NoSuchFieldException e) {
