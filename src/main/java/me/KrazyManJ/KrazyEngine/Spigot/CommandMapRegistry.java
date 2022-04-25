@@ -1,9 +1,9 @@
 package me.KrazyManJ.KrazyEngine.Spigot;
 
+import me.KrazyManJ.KrazyEngine.Any.ListMerger;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.SimpleCommandMap;
-import org.bukkit.craftbukkit.v1_17_R1.CraftServer;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -56,26 +56,27 @@ public final class CommandMapRegistry {
 
     public static synchronized void unregisterCommand(String namespace, Command command){
         command.unregister(commandMap);
-
-        for (String alias : command.getAliases()){
-            if(knownCommands.containsKey(alias) && knownCommands.get(alias).getName().equals(command.getName())){
-                knownCommands.entrySet().removeIf(e -> e.getKey().contains(namespace + ":" + alias) || e.getKey().equals(alias));
-                Bukkit.getHelpMap().getHelpTopics().removeIf(e -> e.getName().equals("/"+alias));
+        for (String label : ListMerger.merge(command.getAliases(),command.getName())){
+            if(knownCommands.containsKey(label) && knownCommands.get(label).getName().equals(command.getName())){
+                knownCommands.entrySet().removeIf(e -> e.getKey().contains(namespace + ":" + label) || e.getKey().equals(label));
+                Bukkit.getHelpMap().getHelpTopics().removeIf(e -> e.getName().equals("/"+command.getName()));
             }
         }
-        knownCommands.entrySet().removeIf(e -> e.getKey().contains(namespace +":" + command.getName()) || e.getKey().equals(command.getName()));
-        Bukkit.getHelpMap().getHelpTopics().removeIf(e -> e.getName().equals("/"+command.getName()));
         updateCommandPallete();
     }
+
     public static synchronized void unregisterCommand(Command command){
         unregisterCommand("",command);
     }
+
     public static synchronized void unregisterCommand(String commandLabel){
         unregisterCommand("",getCommand(commandLabel));
     }
+
     public static synchronized void unregisterCommand(String namespace, String commandLabel){
         unregisterCommand(namespace, getCommand(commandLabel));
     }
+
     public static void updateCommandPallete(){
         try {
             syncCommands.invoke(craftServer.cast(Bukkit.getServer()));
