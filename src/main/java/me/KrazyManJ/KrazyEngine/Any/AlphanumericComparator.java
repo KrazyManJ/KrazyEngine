@@ -6,7 +6,8 @@ import java.util.Comparator;
 import java.util.Locale;
 import java.util.Objects;
 
-public class AlphanumericComparator implements Comparator<CharSequence> {
+@SuppressWarnings("unused")
+public final class AlphanumericComparator implements Comparator<CharSequence> {
 
     private final Collator collator;
 

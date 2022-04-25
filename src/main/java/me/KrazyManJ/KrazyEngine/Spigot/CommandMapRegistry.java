@@ -54,7 +54,7 @@ public final class CommandMapRegistry {
         return commandMap.getCommand(commandLabel) != null;
     }
 
-    public static synchronized void unregisterCommand(String namespace, Command command){
+    public static synchronized void unregister(String namespace, Command command){
         command.unregister(commandMap);
         for (String label : ListMerger.merge(command.getAliases(),command.getName())){
             if(knownCommands.containsKey(label) && knownCommands.get(label).getName().equals(command.getName())){
@@ -65,16 +65,16 @@ public final class CommandMapRegistry {
         updateCommandPallete();
     }
 
-    public static synchronized void unregisterCommand(Command command){
-        unregisterCommand("",command);
+    public static synchronized void unregister(Command command){
+        unregister("",command);
     }
 
-    public static synchronized void unregisterCommand(String commandLabel){
-        unregisterCommand("",getCommand(commandLabel));
+    public static synchronized void unregister(String commandLabel){
+        unregister("",getCommand(commandLabel));
     }
 
-    public static synchronized void unregisterCommand(String namespace, String commandLabel){
-        unregisterCommand(namespace, getCommand(commandLabel));
+    public static synchronized void unregister(String namespace, String commandLabel){
+        unregister(namespace, getCommand(commandLabel));
     }
 
     public static void updateCommandPallete(){

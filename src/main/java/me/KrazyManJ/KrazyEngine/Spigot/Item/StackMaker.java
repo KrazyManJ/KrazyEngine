@@ -28,7 +28,7 @@ public final class StackMaker {
     private final ItemStack stack;
 
     public StackMaker(@NotNull Material mat) { stack = new ItemStack(mat); }
-    private StackMaker(@NotNull ItemStack stack) { this.stack = stack.clone(); }
+    public StackMaker(@NotNull ItemStack stack) { this.stack = stack.clone(); }
 
     public StackMaker amount(int amount){
         stack.setAmount(amount);
