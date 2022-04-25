@@ -1,6 +1,8 @@
 package me.KrazyManJ.KrazyEngine.Spigot;
 
 import me.KrazyManJ.KrazyEngine.Any.ListMerger;
+import me.KrazyManJ.KrazyEngine.NMS.NMSUtils;
+import me.KrazyManJ.KrazyEngine.NMS.ReflectionHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.SimpleCommandMap;
@@ -28,7 +30,7 @@ public final class CommandMapRegistry {
             Field m = SimpleCommandMap.class.getDeclaredField("knownCommands");
             m.setAccessible(true);
             knownCommands = (HashMap<String, Command>) m.get(commandMap);
-            craftServer = Class.forName("org.bukkit.craftbukkit."+BukkitUtils.getVersion()+".CraftServer");
+            craftServer = Class.forName("org.bukkit.craftbukkit."+ NMSUtils.getVersion() +".CraftServer");
             syncCommands = craftServer.getDeclaredMethod("syncCommands");
 
         } catch (NoSuchFieldException | IllegalAccessException | ClassNotFoundException | NoSuchMethodException e) {
@@ -78,8 +80,6 @@ public final class CommandMapRegistry {
     }
 
     public static void updateCommandPallete(){
-        try {
-            syncCommands.invoke(craftServer.cast(Bukkit.getServer()));
-        } catch (InvocationTargetException | IllegalAccessException e) { e.printStackTrace(); }
+        ReflectionHandler.method(syncCommands,ReflectionHandler.cast(Bukkit.getServer(),craftServer));
     }
 }

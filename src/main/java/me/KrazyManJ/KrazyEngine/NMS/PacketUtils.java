@@ -30,7 +30,7 @@ public final class PacketUtils {
 
     static {
         try {
-            craftPlayer = Class.forName("org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer");
+            craftPlayer = Class.forName("org.bukkit.craftbukkit." + NMSUtils.getVersion() + ".entity.CraftPlayer");
             getHandle = craftPlayer.getDeclaredMethod("getHandle");
             playerConnection = Class.forName("net.minecraft.server.level.EntityPlayer").getField("b");
             sendPacket = Class.forName("net.minecraft.server.network.PlayerConnection").getDeclaredMethod("sendPacket",
@@ -48,26 +48,21 @@ public final class PacketUtils {
     }
 
     public static void sendPacket(Player p, Object packet){
-        try {
-            sendPacket.invoke(playerConnection.get(getHandle.invoke(craftPlayer.cast(p))),packet);
-        } catch (IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
-        }
+        ReflectionHandler.method(
+                sendPacket,
+                ReflectionHandler.field(
+                        playerConnection,
+                        ReflectionHandler.method(
+                                getHandle,
+                                ReflectionHandler.cast(p,craftPlayer)
+                                )
+                        )
+                ,packet);
     }
     public static @Nullable Object blockPosition(Block b){
-        try {
-            return blockPosition.newInstance(b.getX(),b.getY(),b.getZ());
-        } catch (InvocationTargetException | IllegalAccessException | InstantiationException e) {
-            e.printStackTrace();
-            return null;
-        }
+        return ReflectionHandler.instance(blockPosition,b.getX(),b.getY(),b.getZ());
     }
     public static Object iChatBaseComponent(BaseComponent[] components){
-        try {
-            return fromJson.invoke(null, ComponentSerializer.toString(components));
-        } catch (IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
-            return null;
-        }
+        return ReflectionHandler.method(fromJson,null, ComponentSerializer.toString(components));
     }
 }

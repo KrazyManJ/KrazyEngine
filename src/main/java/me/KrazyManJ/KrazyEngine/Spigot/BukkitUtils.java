@@ -8,6 +8,9 @@ import java.util.List;
 
 @SuppressWarnings("unused")
 public final class BukkitUtils {
+
+    @Deprecated private BukkitUtils() {}
+
     public static List<String> getOnlinePlayerNames(){
         List<String> pl = new ArrayList<>();
         for (Player p : Bukkit.getOnlinePlayers()) pl.add(p.getName());
@@ -15,8 +18,5 @@ public final class BukkitUtils {
     }
     public static boolean isAnyPlayerOnline(){
         return Bukkit.getOnlinePlayers().size() > 0;
-    }
-    public static String getVersion(){
-        return Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3];
     }
 }
