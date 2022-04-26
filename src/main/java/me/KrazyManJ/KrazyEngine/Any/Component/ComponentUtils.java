@@ -14,6 +14,9 @@ public final class ComponentUtils {
         for (BaseComponent c : components) rc.addExtra(c);
         return rc;
     }
+    public static BaseComponent[] toArray(BaseComponent component){
+        return new BaseComponent[]{component};
+    }
     public static BaseComponent[] colored(String text){
         return TextComponent.fromLegacyText(ColorUtils.colorizeHex(text));
     }

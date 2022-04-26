@@ -1,6 +1,7 @@
 package me.KrazyManJ.KrazyEngine.Spigot.Messaging;
 
 import com.google.common.collect.Iterables;
+import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 import net.md_5.bungee.api.chat.BaseComponent;
@@ -8,14 +9,41 @@ import net.md_5.bungee.chat.ComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.plugin.messaging.PluginMessageListener;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
+import java.util.UUID;
 
 @SuppressWarnings({"unused", "UnusedReturnValue", "UnstableApiUsage"})
 public final class BungeeMessageChannel {
     private final JavaPlugin plugin;
+    private final BungeeResponseListener listener;
 
     public BungeeMessageChannel(JavaPlugin plugin) {
         this.plugin = plugin;
+        this.listener = null;
         Bukkit.getServer().getMessenger().registerOutgoingPluginChannel(plugin,"BungeeCord");
+    }
+    public BungeeMessageChannel(JavaPlugin plugin, BungeeResponseListener responseHandler){
+        this.plugin = plugin;
+        this.listener = responseHandler;
+        Bukkit.getServer().getMessenger().registerIncomingPluginChannel(plugin, "BungeeCord", (channel, player, bytes) -> {
+            if (!channel.equals("BungeeCord")) return;
+            ByteArrayDataInput in = ByteStreams.newDataInput(bytes);
+            String subchannel = in.readUTF();
+            switch (subchannel){
+                case "IP" -> listener.playerIPResponse(in.readUTF(),in.readInt());
+                case "IPOther" -> listener.playerIPOtherResponse(in.readUTF(),in.readUTF(),in.readInt());
+                case "PlayerCount" -> listener.playerCountResponse(in.readUTF(),in.readInt());
+                case "PlayerList" -> listener.playerListResponse(in.readUTF(),List.of(in.readUTF().split(", ")));
+                case "GetServers" -> listener.serverListResponse(List.of(in.readUTF().split(", ")));
+                case "GetServer" -> listener.currentServerResponse(in.readUTF());
+                case "UUID" -> listener.uuidResponse(UUID.fromString(in.readUTF()));
+                case "UUIDOther" -> listener.uuidOtherResponse(in.readUTF(), UUID.fromString(in.readUTF()));
+                case "ServerIP" -> listener.serverIPResponse(in.readUTF(),in.readUTF(),in.readInt());
+            }
+        });
     }
 
 
@@ -88,6 +116,13 @@ public final class BungeeMessageChannel {
         out.write(datacol.toByteArray());
         findExecutor().sendPluginMessage(plugin, "BungeeCord", out.toByteArray());
     }
+
+    public boolean hasResponseHandler(){
+        return listener != null;
+    }
+
+
+
 
     @SuppressWarnings("UnstableApiUsage")
     private void sendPluginMessage(Player player, String subchannel, String ...arguments){

@@ -10,7 +10,7 @@ public final class RegexGroupMatch {
     private final String group;
     private final String value;
 
-    public RegexGroupMatch(@NotNull @Language("SQL") String group,@NotNull String value) {
+    public RegexGroupMatch(@NotNull String group,@NotNull String value) {
         this.group = group;
         this.value = value;
     }
