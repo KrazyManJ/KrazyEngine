@@ -48,6 +48,16 @@ public final class CommandMapRegistry {
         updateCommandPallete();
     }
 
+    public static synchronized void register(Command commandExecutor, String permission){
+        commandExecutor.setPermission(permission);
+        register(commandExecutor);
+    }
+
+    public static synchronized void register(String id, Command commandExecutor, String permission){
+        commandExecutor.setPermission(permission);
+        register(id,commandExecutor);
+    }
+
     public static Command getCommand(String commandLabel){
         return commandMap.getCommand(commandLabel);
     }
