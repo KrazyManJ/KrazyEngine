@@ -1,5 +1,8 @@
 package me.KrazyManJ.KrazyEngine.Any.Text;
 
+import java.util.Arrays;
+import java.util.regex.Pattern;
+
 @SuppressWarnings("unused")
 public final class StringUtils {
 
@@ -13,5 +16,9 @@ public final class StringUtils {
         int count = 0;
         for (int i = 0; i < string.length(); i++) if (string.charAt(i) == ch) count++;
         return count;
+    }
+    public static String[] splitKeepingDelimeter(String text, String ...splitters){
+        String pt = Pattern.quote(String.join("|",splitters));
+        return text.split("(?<=" + pt + ")|(?=" + pt + ")");
     }
 }

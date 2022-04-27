@@ -14,7 +14,7 @@ public final class ItemUtils {
 
     @Deprecated private ItemUtils() {}
 
-    private static final NamespacedKey unstackableKey = NamespacedKey.minecraft("unstackable");
+    public static final NamespacedKey unstackableKey = NamespacedKey.minecraft("unstackable");
 
     public static void makeShiny(ItemStack item) {
         if (!item.getType().equals(Material.BOW)) item.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE,1);
@@ -30,19 +30,5 @@ public final class ItemUtils {
         m.getPersistentDataContainer().set(unstackableKey, PersistentDataType.LONG,
                 Bukkit.getServer().getWorlds().get(0).getGameTime());
         item.setItemMeta(m);
-    }
-
-    public static boolean compareUnstackable(ItemStack first,ItemStack second){
-        first = first.clone();
-        second = second.clone();
-        ItemMeta fm = first.getItemMeta();
-        ItemMeta sm = second.getItemMeta();
-        assert fm != null;
-        assert sm != null;
-        fm.getPersistentDataContainer().remove(unstackableKey);
-        sm.getPersistentDataContainer().remove(unstackableKey);
-        first.setItemMeta(fm);
-        second.setItemMeta(sm);
-        return first.isSimilar(second);
     }
 }

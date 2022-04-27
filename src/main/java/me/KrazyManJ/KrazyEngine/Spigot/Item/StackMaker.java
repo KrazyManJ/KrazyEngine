@@ -21,6 +21,9 @@ public final class StackMaker {
     public static @NotNull StackMaker fromSkull(@NotNull String base64){
         return new StackMaker(Skull.fromValue(base64));
     }
+    public static @NotNull StackMaker fromSkull(@NotNull String base64, UUID uuid){
+        return new StackMaker(Skull.fromValue(base64,uuid));
+    }
     public static @NotNull StackMaker fromSkull(@NotNull OfflinePlayer player){
         return new StackMaker(Skull.ofPlayer(player));
     }

@@ -7,6 +7,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+@SuppressWarnings("UnusedReturnValue")
 public final class ReflectionHandler {
 
     @Deprecated private ReflectionHandler() {}
@@ -41,5 +42,8 @@ public final class ReflectionHandler {
     }
     public static Object cast(@NotNull Object obj, Class<?> castTo){
         return castTo.cast(obj);
+    }
+    public static Class<?> craftbukkit(String packagePath) throws ClassNotFoundException {
+        return Class.forName("org.bukkit.craftbukkit."+ NMSUtils.getVersion() +"."+packagePath);
     }
 }

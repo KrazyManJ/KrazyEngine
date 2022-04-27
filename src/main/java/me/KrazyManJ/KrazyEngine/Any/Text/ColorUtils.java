@@ -39,4 +39,8 @@ public final class ColorUtils {
         for (int i = 0; i < texts.size(); i++) texts.set(i,colorizeHex(texts.get(i)));
         return texts;
     }
+    public static String clearColors(String message, boolean legacy, boolean hex) {
+        if (hex) message = message.replaceAll("(?i)&x(&[0-9a-f]){6}|&#[0-9a-f]{6}","");
+        return legacy ? org.bukkit.ChatColor.stripColor(message) : message;
+    }
 }

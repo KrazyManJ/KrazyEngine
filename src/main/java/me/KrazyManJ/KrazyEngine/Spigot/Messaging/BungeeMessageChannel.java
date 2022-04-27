@@ -9,8 +9,6 @@ import net.md_5.bungee.chat.ComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.plugin.messaging.PluginMessageListener;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.UUID;
@@ -104,7 +102,7 @@ public final class BungeeMessageChannel {
         out.write(datacol.toByteArray());
         findExecutor().sendPluginMessage(plugin, "BungeeCord", out.toByteArray());
     }
-    public void forward(String channel, String player, Object ...data) throws NoOnlinePlayerException {
+    public void forwardToPlayer(String channel, String player, Object ...data) throws NoOnlinePlayerException {
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF("ForwardToPlayer");
         out.writeUTF(player);

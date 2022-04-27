@@ -3,6 +3,9 @@ package me.KrazyManJ.KrazyEngine.Spigot.Item;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import me.KrazyManJ.KrazyEngine.Any.Regex.RegexList;
+import me.KrazyManJ.KrazyEngine.NMS.NMSUtils;
+import me.KrazyManJ.KrazyEngine.NMS.ReflectionHandler;
+import me.KrazyManJ.KrazyEngine.Spigot.BukkitLog;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.inventory.ItemStack;
@@ -20,20 +23,17 @@ public final class Skull {
 
     static {
         try {
-            ItemStack head = new ItemStack(Material.PLAYER_HEAD);
-            SkullMeta meta = (SkullMeta) head.getItemMeta();
-            assert meta != null;
-            profileField = meta.getClass().getDeclaredField("profile");
+            profileField = ReflectionHandler.craftbukkit("inventory.CraftMetaSkull").getDeclaredField("profile");
             profileField.setAccessible(true);
-        } catch (NoSuchFieldException e) { e.printStackTrace(); }
+        } catch (NoSuchFieldException | ClassNotFoundException e) { e.printStackTrace(); }
     }
 
-    public static ItemStack fromValue(String base64){
+    public static ItemStack fromValue(String base64, UUID uuid){
         if (!base64.matches(RegexList.base64.pattern()))
             try { throw new Exception(""); } catch (Exception e) { e.printStackTrace(); }
         ItemStack head = new ItemStack(Material.PLAYER_HEAD);
         SkullMeta meta = (SkullMeta) head.getItemMeta();
-        GameProfile profile = new GameProfile(UUID.randomUUID(), "");
+        GameProfile profile = new GameProfile(uuid, "");
         profile.getProperties().put("textures", new Property("textures", base64));
         try {
             profileField.set(meta, profile);
@@ -42,6 +42,9 @@ public final class Skull {
         }
         head.setItemMeta(meta);
         return head;
+    }
+    public static ItemStack fromValue(String base64){
+        return fromValue(base64,UUID.randomUUID());
     }
 
     public static ItemStack ofPlayer(OfflinePlayer player){

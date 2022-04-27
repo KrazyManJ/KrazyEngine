@@ -3,6 +3,7 @@ package me.KrazyManJ.KrazyEngine.Spigot.Messaging;
 import java.util.List;
 import java.util.UUID;
 
+@SuppressWarnings("unused")
 public interface BungeeResponseListener {
     default void playerIPResponse(String ip, int port){}
     default void playerIPOtherResponse(String name, String ip, int port){}

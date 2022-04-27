@@ -9,16 +9,21 @@ import net.md_5.bungee.api.chat.hover.content.Item;
 import net.md_5.bungee.api.chat.hover.content.Text;
 import org.bukkit.entity.Entity;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "ConstantConditions"})
 public final class HoverMaker {
-    public static HoverEvent fromText(String text){
+    @Contract("_ -> new")
+    public static @NotNull HoverEvent fromText(String text){
         return new HoverEvent(HoverEvent.Action.SHOW_TEXT,new Text(text));
     }
-    public static HoverEvent fromText(BaseComponent[] text){
+    @Contract("_ -> new")
+    public static @NotNull HoverEvent fromText(BaseComponent[] text){
         return new HoverEvent(HoverEvent.Action.SHOW_TEXT,new Text(text));
     }
-    public static HoverEvent fromItem(ItemStack item){
+    @Contract("_ -> new")
+    public static @NotNull HoverEvent fromItem(@NotNull ItemStack item){
         return new HoverEvent(HoverEvent.Action.SHOW_ITEM,
             new Item(
                 item.getType().getKey().getKey(),
@@ -27,7 +32,8 @@ public final class HoverMaker {
             )
         );
     }
-    public static HoverEvent fromEntity(Entity entity){
+    @Contract("_ -> new")
+    public static @NotNull HoverEvent fromEntity(@NotNull Entity entity){
         return new HoverEvent(HoverEvent.Action.SHOW_ENTITY,
             new net.md_5.bungee.api.chat.hover.content.Entity(
                     entity.getType().getKey().toString(),
