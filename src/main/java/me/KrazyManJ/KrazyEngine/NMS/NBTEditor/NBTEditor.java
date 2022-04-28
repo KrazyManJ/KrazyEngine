@@ -13,6 +13,7 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import me.KrazyManJ.KrazyEngine.Core.ReflectionUsed;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -23,6 +24,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
 @SuppressWarnings({"ConstantConditions", "unused" , "deprecation", "unchecked"})
+@ReflectionUsed
 public final class NBTEditor extends JavaPlugin {
 	private static final Map< String, Class< ? > > classCache;
 	private static final Map< String, Method > methodCache;

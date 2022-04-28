@@ -1,18 +1,17 @@
 package me.KrazyManJ.KrazyEngine.Spigot;
 
 import me.KrazyManJ.KrazyEngine.Any.ListMerger;
-import me.KrazyManJ.KrazyEngine.NMS.NMSUtils;
-import me.KrazyManJ.KrazyEngine.NMS.ReflectionHandler;
+import me.KrazyManJ.KrazyEngine.Core.ReflectionHandler;
+import me.KrazyManJ.KrazyEngine.Core.ReflectionUsed;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.SimpleCommandMap;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 
 @SuppressWarnings({"unused", "unchecked"})
+@ReflectionUsed
 public final class CommandMapRegistry {
 
     @Deprecated private CommandMapRegistry() {}
@@ -24,26 +23,25 @@ public final class CommandMapRegistry {
 
     static {
         try {
-            Field f = Bukkit.getServer().getClass().getDeclaredField("commandMap");
-            f.setAccessible(true);
-            commandMap = (SimpleCommandMap) f.get(Bukkit.getServer());
-            Field m = SimpleCommandMap.class.getDeclaredField("knownCommands");
-            m.setAccessible(true);
-            knownCommands = (HashMap<String, Command>) m.get(commandMap);
-            craftServer = Class.forName("org.bukkit.craftbukkit."+ NMSUtils.getVersion() +".CraftServer");
+            commandMap = (SimpleCommandMap) ReflectionHandler.accessibleField(Bukkit.getServer().getClass()
+                    .getDeclaredField("commandMap")).get(Bukkit.getServer());
+            knownCommands = (HashMap<String, Command>) ReflectionHandler.accessibleField(
+                    SimpleCommandMap.class.getDeclaredField("knownCommands")).get(commandMap);
+            craftServer = ReflectionHandler.craftbukkitClass("CraftServer");
             syncCommands = craftServer.getDeclaredMethod("syncCommands");
 
         } catch (NoSuchFieldException | IllegalAccessException | ClassNotFoundException | NoSuchMethodException e) {
             e.printStackTrace();
         }
     }
-
     public static synchronized void register(Command commandExecutor){
+        if (commandMap == null) return;
         commandMap.register(commandExecutor.getName(),commandExecutor);
         updateCommandPallete();
     }
 
     public static synchronized void register(String id,Command commandExecutor){
+        if (commandMap == null) return;
         commandMap.register(id, commandExecutor);
         updateCommandPallete();
     }
@@ -59,14 +57,17 @@ public final class CommandMapRegistry {
     }
 
     public static Command getCommand(String commandLabel){
+        if (commandMap == null) return null;
         return commandMap.getCommand(commandLabel);
     }
 
     public static boolean isValidCommand(String commandLabel){
+        if (commandMap == null) return false;
         return commandMap.getCommand(commandLabel) != null;
     }
 
     public static synchronized void unregister(String namespace, Command command){
+        if (commandMap == null || knownCommands == null) return;
         command.unregister(commandMap);
         for (String label : ListMerger.merge(command.getAliases(),command.getName())){
             if(knownCommands.containsKey(label) && knownCommands.get(label).getName().equals(command.getName())){
@@ -90,6 +91,7 @@ public final class CommandMapRegistry {
     }
 
     public static void updateCommandPallete(){
-        ReflectionHandler.method(syncCommands,ReflectionHandler.cast(Bukkit.getServer(),craftServer));
+        if (syncCommands == null ||craftServer == null) return;
+        ReflectionHandler.invokeMethod(syncCommands,ReflectionHandler.cast(Bukkit.getServer(),craftServer));
     }
 }

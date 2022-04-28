@@ -52,15 +52,10 @@ public final class NBTCompound {
 
     @Override
     public boolean equals( Object obj ) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
         NBTCompound other = (NBTCompound) obj;
-        if (tag == null) {
-            return other.tag == null;
-        } else return tag.equals(other.tag);
+        if (tag == null) { return other.tag == null; } else return tag.equals(other.tag);
     }
 }

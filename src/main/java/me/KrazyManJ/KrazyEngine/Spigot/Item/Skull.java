@@ -3,9 +3,8 @@ package me.KrazyManJ.KrazyEngine.Spigot.Item;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import me.KrazyManJ.KrazyEngine.Any.Regex.RegexList;
-import me.KrazyManJ.KrazyEngine.NMS.NMSUtils;
-import me.KrazyManJ.KrazyEngine.NMS.ReflectionHandler;
-import me.KrazyManJ.KrazyEngine.Spigot.BukkitLog;
+import me.KrazyManJ.KrazyEngine.Core.ReflectionHandler;
+import me.KrazyManJ.KrazyEngine.Core.ReflectionUsed;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.inventory.ItemStack;
@@ -15,6 +14,7 @@ import java.lang.reflect.Field;
 import java.util.UUID;
 
 @SuppressWarnings("unused")
+@ReflectionUsed
 public final class Skull {
 
     @Deprecated private Skull() {}
@@ -23,8 +23,8 @@ public final class Skull {
 
     static {
         try {
-            profileField = ReflectionHandler.craftbukkit("inventory.CraftMetaSkull").getDeclaredField("profile");
-            profileField.setAccessible(true);
+            profileField = ReflectionHandler.accessibleField(
+                    ReflectionHandler.craftbukkitClass("inventory.CraftMetaSkull").getDeclaredField("profile"));
         } catch (NoSuchFieldException | ClassNotFoundException e) { e.printStackTrace(); }
     }
 
