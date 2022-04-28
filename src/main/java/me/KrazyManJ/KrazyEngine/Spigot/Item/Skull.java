@@ -32,14 +32,12 @@ public final class Skull {
         if (!base64.matches(RegexList.base64.pattern()))
             try { throw new Exception(""); } catch (Exception e) { e.printStackTrace(); }
         ItemStack head = new ItemStack(Material.PLAYER_HEAD);
+        if (profileField == null) return head;
+
         SkullMeta meta = (SkullMeta) head.getItemMeta();
         GameProfile profile = new GameProfile(uuid, "");
         profile.getProperties().put("textures", new Property("textures", base64));
-        try {
-            profileField.set(meta, profile);
-        } catch (IllegalArgumentException | IllegalAccessException | SecurityException e) {
-            e.printStackTrace();
-        }
+        ReflectionHandler.setField(profileField, meta, profile);
         head.setItemMeta(meta);
         return head;
     }

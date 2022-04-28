@@ -25,6 +25,13 @@ public final class ReflectionHandler {
             return null;
         }
     }
+    public static void setField(@NotNull Field field, Object obj, Object setTo){
+        try {
+            field.set(obj,setTo);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
     public static Object cast(@NotNull Object obj, Class<?> castTo){
         return castTo.cast(obj);
     }
