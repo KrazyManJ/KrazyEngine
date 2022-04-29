@@ -22,7 +22,7 @@ public final class APIsUtils {
             URL url = new URL(link);
             URLConnection request = url.openConnection();
             request.connect();
-            return new JsonParser().parse(new InputStreamReader((InputStream) request.getContent()));
+            return JsonParser.parseReader(new InputStreamReader((InputStream) request.getContent()));
         }
         catch (IOException e) {
             e.printStackTrace();
