@@ -15,4 +15,10 @@ public final class ListMerger {
         r.addAll(List.of(objects));
         return r;
     }
+
+    public static <T> List<T> merge(T object, List<T> list){
+        List<T> r = new ArrayList<>(list);
+        r.add(0,object);
+        return r;
+    }
 }

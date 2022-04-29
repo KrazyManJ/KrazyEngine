@@ -12,10 +12,15 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShapelessRecipeHolder extends ARecipeHolder {
+@SuppressWarnings("unused")
+public final class ShapelessRecipeHolder extends ARecipeHolder {
 
     private final List<List<ItemStack>> items = new ArrayList<>();
     private final List<List<Material>> mats = new ArrayList<>();
+
+    public ShapelessRecipeHolder(@NotNull ItemStack result) {
+        super(result);
+    }
 
     public ShapelessRecipeHolder addIngredient(ItemStack i){
         items.add(List.of(i));
@@ -35,7 +40,7 @@ public class ShapelessRecipeHolder extends ARecipeHolder {
     }
 
     @Override
-    public @NotNull Recipe createRecipe(JavaPlugin plugin, String key, ItemStack result) {
+    public @NotNull Recipe createRecipe(JavaPlugin plugin, String key) {
         ShapelessRecipe r = new ShapelessRecipe(new NamespacedKey(plugin,key),result);
         items.forEach(i -> r.addIngredient(new RecipeChoice.ExactChoice(i)));
         mats.forEach(m -> r.addIngredient(new RecipeChoice.MaterialChoice(m)));

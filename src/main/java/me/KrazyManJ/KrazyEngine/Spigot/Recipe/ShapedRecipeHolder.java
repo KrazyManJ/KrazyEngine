@@ -13,13 +13,15 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class ShapedRecipeHolder extends ARecipeHolder {
+@SuppressWarnings("unused")
+public final class ShapedRecipeHolder extends ARecipeHolder {
 
     private final String[] shape;
     private final HashMap<Character, List<ItemStack>> items = new HashMap<>();
     private final HashMap<Character, List<Material>> mats = new HashMap<>();
 
-    public ShapedRecipeHolder(String ...shape){
+    public ShapedRecipeHolder(@NotNull ItemStack result, String ...shape){
+        super(result);
         this.shape = shape;
     }
     public ShapedRecipeHolder setIngredient(char ch, ItemStack i){
@@ -40,7 +42,7 @@ public class ShapedRecipeHolder extends ARecipeHolder {
     }
 
     @Override
-    public @NotNull Recipe createRecipe(JavaPlugin plugin, String key, ItemStack result) {
+    public @NotNull Recipe createRecipe(JavaPlugin plugin, String key) {
         ShapedRecipe r = new ShapedRecipe(new NamespacedKey(plugin,key),result);
         r.shape(shape);
         items.forEach((ch, i) -> r.setIngredient(ch, new RecipeChoice.ExactChoice(i)));
