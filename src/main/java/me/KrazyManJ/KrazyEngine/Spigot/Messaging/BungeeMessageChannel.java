@@ -26,20 +26,27 @@ public final class BungeeMessageChannel {
     public BungeeMessageChannel(JavaPlugin plugin, BungeeResponseListener responseHandler){
         this.plugin = plugin;
         this.listener = responseHandler;
+        Bukkit.getServer().getMessenger().registerOutgoingPluginChannel(plugin,"BungeeCord");
         Bukkit.getServer().getMessenger().registerIncomingPluginChannel(plugin, "BungeeCord", (channel, player, bytes) -> {
             if (!channel.equals("BungeeCord")) return;
             ByteArrayDataInput in = ByteStreams.newDataInput(bytes);
             String subchannel = in.readUTF();
             switch (subchannel){
-                case "IP" -> listener.playerIPResponse(in.readUTF(),in.readInt());
-                case "IPOther" -> listener.playerIPOtherResponse(in.readUTF(),in.readUTF(),in.readInt());
-                case "PlayerCount" -> listener.playerCountResponse(in.readUTF(),in.readInt());
-                case "PlayerList" -> listener.playerListResponse(in.readUTF(),List.of(in.readUTF().split(", ")));
-                case "GetServers" -> listener.serverListResponse(List.of(in.readUTF().split(", ")));
-                case "GetServer" -> listener.currentServerResponse(in.readUTF());
-                case "UUID" -> listener.uuidResponse(UUID.fromString(in.readUTF()));
-                case "UUIDOther" -> listener.uuidOtherResponse(in.readUTF(), UUID.fromString(in.readUTF()));
-                case "ServerIP" -> listener.serverIPResponse(in.readUTF(),in.readUTF(),in.readInt());
+                case "IP" -> listener.playerIPResponse(player,in.readUTF(),in.readInt());
+                case "IPOther" -> listener.playerIPOtherResponse(player,in.readUTF(),in.readUTF(),in.readInt());
+                case "PlayerCount" -> listener.playerCountResponse(player,in.readUTF(),in.readInt());
+                case "PlayerList" -> listener.playerListResponse(player,in.readUTF(),List.of(in.readUTF().split(", ")));
+                case "GetServers" -> listener.serverListResponse(player,List.of(in.readUTF().split(", ")));
+                case "GetServer" -> listener.currentServerResponse(player,in.readUTF());
+                case "UUID" -> listener.uuidResponse(player,UUID.fromString(in.readUTF()));
+                case "UUIDOther" -> listener.uuidOtherResponse(player,in.readUTF(), UUID.fromString(in.readUTF()));
+                case "ServerIP" -> listener.serverIPResponse(player,in.readUTF(),in.readUTF(),in.readInt());
+                case "Forward","ForwardToPlayer" -> {
+                    int len = in.readInt();
+                    byte[] msg = new byte[len];
+                    in.readFully(msg);
+                    listener.forwardResponse(player,in.readUTF(),in.readInt(),ByteStreams.newDataInput(msg));
+                }
             }
         });
     }
@@ -90,28 +97,24 @@ public final class BungeeMessageChannel {
         sendPluginMessage(findExecutor(),"ServerIP",server);
     }
 
-    public void forward(String channel, ForwardType type, Object ...data) throws NoOnlinePlayerException {
+    public void forward(String channel, ForwardType type, ByteArrayDataOutput data) throws NoOnlinePlayerException {
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF("Forward");
         out.writeUTF(type.name().toUpperCase());
         out.writeUTF(channel);
 
-        ByteArrayDataOutput datacol = ByteStreams.newDataOutput();
-        for (Object prop : data) datacol.writeUTF(prop.toString());
-        out.writeShort(datacol.toByteArray().length);
-        out.write(datacol.toByteArray());
+        out.writeShort(data.toByteArray().length);
+        out.write(data.toByteArray());
         findExecutor().sendPluginMessage(plugin, "BungeeCord", out.toByteArray());
     }
-    public void forwardToPlayer(String channel, String player, Object ...data) throws NoOnlinePlayerException {
+    public void forwardToPlayer(String channel, String player, ByteArrayDataOutput data) throws NoOnlinePlayerException {
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF("ForwardToPlayer");
         out.writeUTF(player);
         out.writeUTF(channel);
 
-        ByteArrayDataOutput datacol = ByteStreams.newDataOutput();
-        for (Object prop : data) datacol.writeUTF(prop.toString());
-        out.writeShort(datacol.toByteArray().length);
-        out.write(datacol.toByteArray());
+        out.writeShort(data.toByteArray().length);
+        out.write(data.toByteArray());
         findExecutor().sendPluginMessage(plugin, "BungeeCord", out.toByteArray());
     }
 
@@ -133,5 +136,17 @@ public final class BungeeMessageChannel {
         Player exec = Iterables.getFirst(Bukkit.getOnlinePlayers(),null);
         if (exec == null) throw new NoOnlinePlayerException();
         return exec;
+    }
+
+    static final class NoOnlinePlayerException extends Exception {
+        public NoOnlinePlayerException() {
+            super("There is no player online to execute this action!");
+        }
+    }
+
+    @SuppressWarnings("unused")
+    public enum ForwardType{
+        ALL,
+        ONLINE
     }
 }
