@@ -40,7 +40,10 @@ public final class ColorUtils {
         return texts;
     }
     public static String clearColors(String message, boolean legacy, boolean hex) {
-        if (hex) message = message.replaceAll("(?i)&x(&[0-9a-f]){6}|&#[0-9a-f]{6}","");
+        if (hex) message = message.replaceAll("(?i)&x(&[0-9a-f]){6}|&#[0-9a-f]{6}|§x(§[0-9a-f]){6}","");
         return legacy ? org.bukkit.ChatColor.stripColor(message) : message;
+    }
+    public static String clearColors(String message){
+        return clearColors(message, true, true);
     }
 }
