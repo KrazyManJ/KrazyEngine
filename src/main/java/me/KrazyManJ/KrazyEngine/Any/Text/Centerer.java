@@ -2,7 +2,10 @@ package me.KrazyManJ.KrazyEngine.Any.Text;
 
 import org.bukkit.map.MinecraftFont;
 
-public class Centerer {
+@SuppressWarnings("unused")
+public final class Centerer {
+
+    @Deprecated private Centerer() {}
 
     private static String center(String t, int rowsize){
         if (t.length() > rowsize) return t;
@@ -33,7 +36,6 @@ public class Centerer {
                 width++;
             }
             width = width > 0 ? width - 1 : 0;
-
             size += split.startsWith("&l") || split.startsWith("§l")
                     ? width + cleared.length()
                     : width;

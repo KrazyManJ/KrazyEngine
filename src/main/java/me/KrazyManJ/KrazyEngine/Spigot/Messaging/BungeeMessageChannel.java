@@ -122,9 +122,6 @@ public final class BungeeMessageChannel {
         return listener != null;
     }
 
-
-
-
     @SuppressWarnings("UnstableApiUsage")
     private void sendPluginMessage(Player player, String subchannel, String ...arguments){
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
