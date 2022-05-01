@@ -1,6 +1,5 @@
 package me.KrazyManJ.KrazyEngine.Any.Text;
 
-import me.KrazyManJ.KrazyEngine.Any.Component.ComponentUtils;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -54,5 +53,11 @@ public final class BarLine {
     }
     public BaseComponent[] drawComponent(){
         return TextComponent.fromLegacyText(draw());
+    }
+
+    static final class IllegalBarLineActionException extends Exception {
+        public IllegalBarLineActionException(String message) {
+            super(message);
+        }
     }
 }

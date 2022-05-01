@@ -1,6 +1,5 @@
 package me.KrazyManJ.KrazyEngine.Any.Component;
 
-import me.KrazyManJ.KrazyEngine.Any.Text.ColorUtils;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.TextComponent;
 
@@ -16,8 +15,5 @@ public final class ComponentUtils {
     }
     public static BaseComponent[] toArray(BaseComponent component){
         return new BaseComponent[]{component};
-    }
-    public static BaseComponent[] colored(String text){
-        return TextComponent.fromLegacyText(ColorUtils.colorizeHex(text));
     }
 }

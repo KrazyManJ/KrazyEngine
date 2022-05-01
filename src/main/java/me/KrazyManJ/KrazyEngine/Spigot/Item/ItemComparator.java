@@ -5,7 +5,11 @@ import me.KrazyManJ.KrazyEngine.NMS.NBTEditor.NBTCompound;
 import me.KrazyManJ.KrazyEngine.NMS.NBTEditor.NBTEditor;
 import org.bukkit.inventory.ItemStack;
 
+@SuppressWarnings("unused")
 public final class ItemComparator {
+
+    @Deprecated private ItemComparator() {}
+
     public static boolean compare(ItemStack first, ItemStack second){
         NBTCompound c1 = NBTEditor.getNBTCompound(first);
         NBTCompound c2 = NBTEditor.getNBTCompound(second);

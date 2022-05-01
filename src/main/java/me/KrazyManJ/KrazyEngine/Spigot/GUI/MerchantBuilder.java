@@ -8,6 +8,7 @@ import org.bukkit.inventory.MerchantRecipe;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public final class MerchantBuilder {
 
     private final Merchant r;
