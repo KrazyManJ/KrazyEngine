@@ -3,10 +3,10 @@ package me.KrazyManJ.KrazyEngine.Any;
 import java.util.Collection;
 import java.util.function.Predicate;
 
-@SuppressWarnings("unchecked")
+@SuppressWarnings({"unchecked", "unused"})
 public final class Cyclinator<T> {
     private final T[] elems;
-    private int index = -1;
+    private int cursor = -1;
 
     @SafeVarargs
     public Cyclinator(T object, T ...objects) {
@@ -18,7 +18,7 @@ public final class Cyclinator<T> {
         this.elems = objectCollection.toArray((T[]) new Object[]{});
     }
     public T next(){
-        index = index+1 == elems.length ? 0 : index + 1;
+        cursor = cursor +1 == elems.length ? 0 : cursor + 1;
         return current();
     }
     public T next(int shift){
@@ -32,7 +32,7 @@ public final class Cyclinator<T> {
         return next(2);
     }
     public T current(){
-        return elems[index];
+        return elems[cursor];
     }
     public int length(){
         return elems.length;
