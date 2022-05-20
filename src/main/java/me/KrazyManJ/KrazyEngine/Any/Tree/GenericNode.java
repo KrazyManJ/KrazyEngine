@@ -20,7 +20,7 @@ public final class GenericNode<T> extends Node<T,GenericNode<T>>{
         return children;
     }
 
-    public GenericNode<T> addChild(T value){
+    public @NotNull GenericNode<T> addChild(T value){
         GenericNode<T> node = new GenericNode<>(value,this);
         children.add(node);
         return node;

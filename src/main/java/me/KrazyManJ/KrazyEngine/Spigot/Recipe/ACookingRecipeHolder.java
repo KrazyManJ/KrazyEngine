@@ -8,8 +8,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-@SuppressWarnings({"unchecked", "unused"})
-public abstract class ACookingRecipeHolder extends ARecipeHolder {
+@SuppressWarnings({"unchecked", "unused", "rawtypes"})
+public abstract class ACookingRecipeHolder<T extends ACookingRecipeHolder> extends ARecipeHolder {
 
     protected float expReward;
     protected int cookingTime;
@@ -29,9 +29,15 @@ public abstract class ACookingRecipeHolder extends ARecipeHolder {
     }
 
     public final float getExpReward() { return expReward; }
-    public final void setExpReward(Float expReward) { this.expReward = expReward; }
+    public final T setExpReward(Float expReward) {
+        this.expReward = expReward;
+        return (T) this;
+    }
     public final int getCookingTime() { return cookingTime; }
-    public final void setCookingTime(Integer cookingTime) { this.cookingTime = cookingTime; }
+    public final T setCookingTime(Integer cookingTime) {
+        this.cookingTime = cookingTime;
+        return (T) this;
+    }
 
     protected final RecipeChoice toRecipeChoice(){
         return input.get(0) instanceof Material

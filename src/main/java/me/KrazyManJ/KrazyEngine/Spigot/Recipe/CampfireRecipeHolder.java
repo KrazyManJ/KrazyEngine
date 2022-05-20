@@ -9,7 +9,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("unused")
-public final class CampfireRecipeHolder extends ACookingRecipeHolder {
+public final class CampfireRecipeHolder extends ACookingRecipeHolder<CampfireRecipeHolder> {
 
     public static final int DEFAULT_COOKING_TIME = 600;
 

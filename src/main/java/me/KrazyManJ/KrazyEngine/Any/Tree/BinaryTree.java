@@ -24,4 +24,7 @@ public final class BinaryTree<T> extends Tree<T,BinaryNode<T>>{
     public void cutLeft() {
         root.cutLeft();
     }
+    public void twist() {
+        root.twist();
+    }
 }

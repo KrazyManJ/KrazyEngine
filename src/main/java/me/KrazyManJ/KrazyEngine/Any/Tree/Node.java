@@ -56,7 +56,7 @@ public abstract class Node<T,N extends Node<T,?>> {
         return i;
     }
 
-    public final List<N> getAllNodes(){
+    public final @NotNull List<N> getAllNodes(){
         List<N> r = new ArrayList<>((List<N>) List.of(this));
         for (N child : getChildren()) {
             r.addAll((List<N>) child.getAllNodes());

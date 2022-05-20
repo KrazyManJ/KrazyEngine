@@ -1,5 +1,7 @@
 package me.KrazyManJ.KrazyEngine.Any.Tree;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Iterator;
 import java.util.List;
 
@@ -43,7 +45,7 @@ public abstract class Tree<T,N extends Node<T,?>> {
     }
 
     @SuppressWarnings("unchecked")
-    private void a(StringBuilder builder, N node, TreeNodeDisplayer<T> displayer, String p, String ch){
+    private void a(@NotNull StringBuilder builder, N node, TreeNodeDisplayer<T> displayer, String p, String ch){
         builder.append(p);
         if (node == null){
             builder.append("null").append("\n");

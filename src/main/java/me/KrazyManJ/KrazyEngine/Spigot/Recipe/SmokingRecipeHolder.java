@@ -9,7 +9,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("unused")
-public final class SmokingRecipeHolder extends ACookingRecipeHolder{
+public final class SmokingRecipeHolder extends ACookingRecipeHolder<SmokingRecipeHolder> {
 
     public static final int DEFAULT_COOKING_TIME = 100;
 

@@ -8,7 +8,7 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
-public final class BlastingRecipeHolder extends ACookingRecipeHolder {
+public final class BlastingRecipeHolder extends ACookingRecipeHolder<BlastingRecipeHolder> {
 
     public static final int DEFAULT_COOKING_TIME = 100;
 
