@@ -1,7 +1,5 @@
 package me.KrazyManJ.KrazyEngine.Any.Command;
 
-import org.apache.commons.lang.StringUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,7 +11,7 @@ public final class TabCompleteUtils {
 
     public static List<String> suggestByInput(String input, List<String> suggestions) {
         return (!input.equals(""))
-                ? suggestions.stream().filter(f -> StringUtils.containsIgnoreCase(f, input)).collect(Collectors.toList())
+                ? suggestions.stream().filter(f -> f.toLowerCase().contains(input.toLowerCase())).collect(Collectors.toList())
                 : suggestions;
     }
 
