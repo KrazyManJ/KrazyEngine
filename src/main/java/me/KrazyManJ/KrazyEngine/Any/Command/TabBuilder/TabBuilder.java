@@ -1,6 +1,7 @@
 package me.KrazyManJ.KrazyEngine.Any.Command.TabBuilder;
 
 import me.KrazyManJ.KrazyEngine.Any.Command.TabCompleteUtils;
+import org.bukkit.Bukkit;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -31,13 +32,17 @@ public abstract class TabBuilder<B extends TabBuilder<B,F,S>, F extends TabField
         for (String arg : Arrays.copyOfRange(args, 0, args.length-1)){
             for (F field : currFields){
                 if (field.contains(sender,arg)){
-                    if (!field.hasFields() || !field.meetRequirement(sender)) return defaultList;
+                    if (!field.hasFields()) return defaultList;
+                    if (!field.meetRequirement(sender)) return defaultList;
                     currFields = field.getFields();
                     found = true;
                     break;
                 }
             }
-            if (!found) return defaultList;
+            if (!found) {
+                Bukkit.broadcastMessage("test");
+                return defaultList;
+            }
         }
 
         List<String> stringList = new ArrayList<>();
