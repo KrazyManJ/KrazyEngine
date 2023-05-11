@@ -30,6 +30,7 @@ public final class Region implements Cloneable, ConfigurationSerializable {
     }
 
     public boolean isWithin(@NotNull Location location){
+        if (location.getWorld() == null) return false;
         if (!location.getWorld().equals(min.getWorld())) return false;
         return min.getX() >= location.getX()
             && min.getY() >= location.getY()
