@@ -1,15 +1,11 @@
 package me.KrazyManJ.KrazyEngine.Spigot.Item;
 
-import me.KrazyManJ.KrazyEngine.Any.Text.Gradient;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.block.banner.Pattern;
 import org.bukkit.block.banner.PatternType;
-import org.bukkit.entity.Creeper;
-import org.bukkit.entity.Pig;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BannerMeta;
-import org.checkerframework.checker.units.qual.C;
 
 @SuppressWarnings("unused")
 public final class BannerMaker {
