@@ -4,6 +4,7 @@ import net.md_5.bungee.api.plugin.Plugin;
 
 import java.io.*;
 import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 
 @SuppressWarnings({"unused"})
 public final class BungeeSourceManager {
@@ -14,7 +15,7 @@ public final class BungeeSourceManager {
         InputStream in = plugin.getResourceAsStream(path);
         OutputStream out;
         try {
-            Files.copy(in,file.toPath());
+            Files.copy(in,file.toPath(), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             e.printStackTrace();
         }
