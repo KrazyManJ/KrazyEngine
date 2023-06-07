@@ -29,35 +29,33 @@ fun excludingLib(compiled: Boolean): List<String> {
     )
 }
 
-val pluginJar by tasks.registering(Jar::class) {
-    from(sourceSets.main.get().output)
-    archiveClassifier.set("plugin")
-}
-
 java {
     withJavadocJar()
+}
+
+tasks {
+    withType<JavaCompile> {
+        options.encoding = "UTF-8"
+    }
+    withType<Javadoc> {
+        options.encoding = "UTF-8"
+    }
+    val pluginJar by registering(Jar::class) {
+        from(sourceSets.main.get().output)
+        archiveClassifier.set("plugin")
+    }
+    jar {
+        dependsOn(pluginJar)
+        exclude(excludingLib(true))
+    }
+    javadoc {
+        destinationDir = file("${rootProject.rootDir}/javadoc")
+        exclude(excludingLib(false))
+    }
 }
 
 publishing {
     publications.create<MavenPublication>("maven") {
         from(components["java"])
     }
-}
-
-tasks.withType<JavaCompile> {
-    options.encoding = "UTF-8"
-}
-
-tasks.withType<Javadoc> {
-    options.encoding = "UTF-8"
-}
-
-tasks.jar {
-    dependsOn(pluginJar)
-    exclude(excludingLib(true))
-}
-
-tasks.javadoc {
-    destinationDir = file("${rootProject.rootDir}/javadoc")
-    exclude(excludingLib(false))
 }
