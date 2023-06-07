@@ -26,6 +26,10 @@ val pluginJar by tasks.registering(Jar::class) {
     archiveClassifier.set("plugin")
 }
 
+java {
+    withJavadocJar()
+}
+
 publishing {
     publications.create<MavenPublication>("maven") {
         from(components["java"])
@@ -46,5 +50,13 @@ tasks.jar {
         "**/*.yml",
         "me/KrazyManJ/KrazyEngine/BungeeMain.class",
         "me/KrazyManJ/KrazyEngine/SpigotMain.class"
+    )
+}
+
+tasks.javadoc {
+    exclude(
+        "**/*.yml",
+        "me/KrazyManJ/KrazyEngine/BungeeMain.java",
+        "me/KrazyManJ/KrazyEngine/SpigotMain.java"
     )
 }

@@ -1,6 +1,9 @@
 package me.KrazyManJ.KrazyEngine.Any.Component.Translate;
 
+import me.KrazyManJ.KrazyEngine.Core.NeedsUpdateEachMinecraftVersion;
+
 @SuppressWarnings("unused")
+@NeedsUpdateEachMinecraftVersion(lastUpdated = "1.17")
 public enum ItemGroup {
     ITEMGROUP_BUILDINGBLOCKS("itemGroup.buildingBlocks"),
     ITEMGROUP_DECORATIONS("itemGroup.decorations"),

@@ -13,9 +13,9 @@ import java.net.URLConnection;
 import java.util.stream.Collectors;
 
 @SuppressWarnings("unused")
-public final class APIsUtils {
+public final class APIFetcher {
 
-    @Deprecated private APIsUtils() {}
+    @Deprecated private APIFetcher() {}
 
     public static JsonElement fetchJson(String link) {
         try {

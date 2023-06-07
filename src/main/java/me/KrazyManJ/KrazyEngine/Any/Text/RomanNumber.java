@@ -1,6 +1,6 @@
 package me.KrazyManJ.KrazyEngine.Any.Text;
 
-import me.KrazyManJ.KrazyEngine.Any.Regex.RegexList;
+import me.KrazyManJ.KrazyEngine.Any.Regex.RegexConstants;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
@@ -33,7 +33,7 @@ public final class RomanNumber {
         return result;
     }
     public static boolean isRoman(@NotNull String roman){
-        return roman.matches("^"+RegexList.romanNumeral.pattern()+"$");
+        return roman.matches("^"+ RegexConstants.romanNumeral.pattern()+"$");
     }
 
     private enum RomanLiteral {

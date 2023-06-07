@@ -1,5 +1,6 @@
-package me.KrazyManJ.KrazyEngine.Any.Command.TabBuilder;
+package me.KrazyManJ.KrazyEngine.Spigot.Command.TabBuilder;
 
+import me.KrazyManJ.KrazyEngine.Core.Command.TabBuilder.TabField;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
@@ -12,21 +13,27 @@ public final class SpigotTabField extends TabField<SpigotTabField, CommandSender
     public SpigotTabField(@NotNull List<String> args) {
         super(args);
     }
+
     public SpigotTabField(@NotNull List<String> args, @NotNull Predicate<CommandSender> predicate) {
         super(args, predicate);
     }
+
     public SpigotTabField(@NotNull Function<CommandSender, List<String>> args) {
         super(args);
     }
+
     public SpigotTabField(@NotNull Function<CommandSender, List<String>> args, @NotNull Predicate<CommandSender> predicate) {
         super(args, predicate);
     }
+
     public SpigotTabField(@NotNull String arg) {
         super(arg);
     }
+
     public SpigotTabField(@NotNull String arg, @NotNull Predicate<CommandSender> predicate) {
         super(arg, predicate);
     }
+
     public SpigotTabField(@NotNull String arg, String... oArgs) {
         super(arg, oArgs);
     }

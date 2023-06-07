@@ -1,6 +1,9 @@
 package me.KrazyManJ.KrazyEngine.Any.Component.Target;
 
+import me.KrazyManJ.KrazyEngine.Core.NeedsUpdateEachMinecraftVersion;
+
 @SuppressWarnings("unused")
+@NeedsUpdateEachMinecraftVersion(lastUpdated = "1.17")
 public enum EntityFamily {
     ARMOR_STAND,
     AXOLOTL,

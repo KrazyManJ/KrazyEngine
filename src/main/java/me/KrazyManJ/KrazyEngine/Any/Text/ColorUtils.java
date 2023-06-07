@@ -21,10 +21,15 @@ public final class ColorUtils {
         return texts;
     }
     public static List<String> colorize(List<String> texts){
-        for (int i = 0; i < texts.size(); i++) texts.set(i,colorize(texts.get(i)));
+        texts.replaceAll(ColorUtils::colorize);
         return texts;
     }
 
+    /**
+     * Colorize text with hex colors in format &amp;#09afAF
+     * @param text Text to colorize
+     * @return colorized text
+     */
     public static String colorizeHex(String text){
         Matcher m = hex.matcher(text);
         while (m.find())

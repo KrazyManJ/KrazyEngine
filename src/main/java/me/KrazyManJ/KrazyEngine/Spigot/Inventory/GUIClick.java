@@ -1,4 +1,4 @@
-package me.KrazyManJ.KrazyEngine.Spigot.GUI;
+package me.KrazyManJ.KrazyEngine.Spigot.Inventory;
 
 import org.bukkit.event.inventory.InventoryClickEvent;
 

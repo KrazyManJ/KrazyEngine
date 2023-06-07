@@ -1,6 +1,9 @@
 package me.KrazyManJ.KrazyEngine.Any.Component.Translate;
 
+import me.KrazyManJ.KrazyEngine.Core.NeedsUpdateEachMinecraftVersion;
+
 @SuppressWarnings("unused")
+@NeedsUpdateEachMinecraftVersion(lastUpdated = "1.17")
 public enum KeybindCategory {
     KEY_CATEGORIES_MOVEMENT("key.categories.movement"),
     KEY_CATEGORIES_MISC("key.categories.misc"),

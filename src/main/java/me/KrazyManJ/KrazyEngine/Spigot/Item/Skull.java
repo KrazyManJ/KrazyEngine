@@ -2,7 +2,7 @@ package me.KrazyManJ.KrazyEngine.Spigot.Item;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
-import me.KrazyManJ.KrazyEngine.Any.Regex.RegexList;
+import me.KrazyManJ.KrazyEngine.Any.Regex.RegexConstants;
 import me.KrazyManJ.KrazyEngine.Core.ReflectionHandler;
 import me.KrazyManJ.KrazyEngine.Core.ReflectionUsed;
 import org.bukkit.Material;
@@ -29,7 +29,7 @@ public final class Skull {
     }
 
     public static ItemStack fromValue(String base64, UUID uuid){
-        if (!base64.matches(RegexList.base64.pattern()))
+        if (!base64.matches(RegexConstants.base64.pattern()))
             try { throw new Exception(""); } catch (Exception e) { e.printStackTrace(); }
         ItemStack head = new ItemStack(Material.PLAYER_HEAD);
         if (profileField == null) return head;

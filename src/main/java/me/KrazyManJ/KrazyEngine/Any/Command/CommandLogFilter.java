@@ -4,23 +4,28 @@ import me.KrazyManJ.KrazyEngine.Spigot.CommandMapRegistry;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Marker;
-import org.apache.logging.log4j.core.Appender;
 import org.apache.logging.log4j.core.LogEvent;
 import org.apache.logging.log4j.core.Logger;
 import org.apache.logging.log4j.core.filter.AbstractFilter;
 import org.apache.logging.log4j.message.Message;
-import org.bukkit.Bukkit;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class that holds command and registers filter while logging command.
+ * This filter is blacklist - commands in this class are not logged.
+ */
 @SuppressWarnings("unused")
-public final class CommandLogFilter{
+public final class CommandLogFilter {
 
     public static boolean validRegistered = false;
     private static final Logger logger = (Logger) LogManager.getRootLogger();
 
-    public static void registerValidFilter(){
+    /**
+     * Registers pre-made filter that filters out commands that are invalid (non-existent)
+     */
+    public static void registerValidFilter() {
         if (validRegistered) return;
         logger.addFilter(new vFilter());
     }
@@ -28,12 +33,21 @@ public final class CommandLogFilter{
 
     private final List<String> commands = new ArrayList<>();
 
-    public CommandLogFilter addCommand(String command){
-        if (!command.startsWith("/")) command = "/"+command;
+    /**
+     * Adds command to memory of this class before registering filter
+     * @param command name of command, even with or without "/" char
+     * @return this object
+     */
+    public CommandLogFilter addCommand(String command) {
+        if (!command.startsWith("/")) command = "/" + command;
         commands.add(command);
         return this;
     }
-    public void register(){
+
+    /**
+     * Registers this filter
+     */
+    public void register() {
         if (commands.size() == 0) return;
         logger.addFilter(new aFilter());
     }
@@ -64,12 +78,14 @@ public final class CommandLogFilter{
             if (msg == null) return Result.NEUTRAL;
             if (!msg.contains("issued server command:")) return Result.NEUTRAL;
 
-            for (String command : commands) if (msg.contains(command)) {
-                return Result.DENY;
-            }
+            for (String command : commands)
+                if (msg.contains(command)) {
+                    return Result.DENY;
+                }
             return Result.NEUTRAL;
         }
     }
+
     private static final class vFilter extends AbstractFilter {
         @Override
         public Result filter(LogEvent event) {

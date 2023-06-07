@@ -7,7 +7,9 @@ import java.util.stream.Collectors;
 @SuppressWarnings("unused")
 public final class TabCompleteUtils {
 
-    @Deprecated private TabCompleteUtils() {}
+    @Deprecated
+    private TabCompleteUtils() {
+    }
 
     public static List<String> suggestByInput(String input, List<String> suggestions) {
         return (!input.equals(""))
@@ -15,7 +17,7 @@ public final class TabCompleteUtils {
                 : suggestions;
     }
 
-    public static List<String> clearTabComplete(){
+    public static List<String> emptySuggestions() {
         return new ArrayList<>();
     }
 }

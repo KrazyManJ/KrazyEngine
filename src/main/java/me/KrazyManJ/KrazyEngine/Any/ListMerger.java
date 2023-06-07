@@ -6,19 +6,21 @@ import java.util.List;
 @SuppressWarnings("unused")
 public final class ListMerger {
 
-    @Deprecated private ListMerger() {}
+    @Deprecated
+    private ListMerger() {
+    }
 
     @SafeVarargs
-    public static <T> List<T> merge(List<T> list, T object, T ...objects){
+    public static <T> List<T> merge(List<T> list, T object, T... objects) {
         List<T> r = new ArrayList<>(list);
         r.add(object);
         r.addAll(List.of(objects));
         return r;
     }
 
-    public static <T> List<T> merge(T object, List<T> list){
+    public static <T> List<T> merge(T object, List<T> list) {
         List<T> r = new ArrayList<>(list);
-        r.add(0,object);
+        r.add(0, object);
         return r;
     }
 }
