@@ -54,6 +54,7 @@ tasks.jar {
 }
 
 tasks.javadoc {
+    destinationDir = file("${rootProject.rootDir}/javadoc")
     exclude(
         "**/*.yml",
         "me/KrazyManJ/KrazyEngine/BungeeMain.java",
