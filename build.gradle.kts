@@ -1,6 +1,9 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 plugins {
     `java-library`
     `maven-publish`
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 repositories {
@@ -33,6 +36,20 @@ java {
     withJavadocJar()
 }
 
+fun registerShadowJarTask(classifier: String ,excludes: List<String>): RegisteringDomainObjectDelegateProviderWithTypeAndAction<out TaskContainer, ShadowJar> {
+    return tasks.registering(ShadowJar::class){
+        from(project.extensions.findByType(JavaPluginExtension::class)?.sourceSets?.main?.get()?.output)
+        configurations = listOf(project.configurations.runtimeClasspath.get())
+        archiveClassifier.set(classifier)
+        minimize()
+        exclude("META-INF/INDEX.LIST", "META-INF/*.SF", "META-INF/*.DSA", "META-INF/*.RSA")
+        exclude(excludes)
+    }
+}
+
+val libJar by registerShadowJarTask("",excludingLib(true))
+val pluginJar by registerShadowJarTask("plugin", listOf())
+
 tasks {
     withType<JavaCompile> {
         options.encoding = "UTF-8"
@@ -40,22 +57,26 @@ tasks {
     withType<Javadoc> {
         options.encoding = "UTF-8"
     }
-    val pluginJar by registering(Jar::class) {
-        from(sourceSets.main.get().output)
-        archiveClassifier.set("plugin")
-    }
     jar {
-        dependsOn(pluginJar)
-        exclude(excludingLib(true))
+        enabled = false
     }
     javadoc {
         destinationDir = file("${rootProject.rootDir}/javadoc")
         exclude(excludingLib(false))
+    }
+    shadowJar {
+        dependsOn(libJar, pluginJar)
+        group = "custom"
+        enabled = false
+    }
+    publishToMavenLocal {
+        group = "custom"
     }
 }
 
 publishing {
     publications.create<MavenPublication>("maven") {
         from(components["java"])
+        artifact(libJar.get())
     }
 }
