@@ -20,6 +20,14 @@ group = "me.KrazyManJ"
 version = "1.0.0"
 description = "KrazyEngine"
 
+fun excludingLib(compiled: Boolean): List<String> {
+    val classifier = if (compiled) "class" else "java"
+    return listOf(
+        "**/*.yml",
+        "me/KrazyManJ/KrazyEngine/BungeeMain.${classifier}",
+        "me/KrazyManJ/KrazyEngine/SpigotMain.${classifier}"
+    )
+}
 
 val pluginJar by tasks.registering(Jar::class) {
     from(sourceSets.main.get().output)
@@ -46,18 +54,10 @@ tasks.withType<Javadoc> {
 
 tasks.jar {
     dependsOn(pluginJar)
-    exclude(
-        "**/*.yml",
-        "me/KrazyManJ/KrazyEngine/BungeeMain.class",
-        "me/KrazyManJ/KrazyEngine/SpigotMain.class"
-    )
+    exclude(excludingLib(true))
 }
 
 tasks.javadoc {
     destinationDir = file("${rootProject.rootDir}/javadoc")
-    exclude(
-        "**/*.yml",
-        "me/KrazyManJ/KrazyEngine/BungeeMain.java",
-        "me/KrazyManJ/KrazyEngine/SpigotMain.java"
-    )
+    exclude(excludingLib(false))
 }
