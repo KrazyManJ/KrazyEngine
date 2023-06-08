@@ -1,6 +1,6 @@
 package me.KrazyManJ.KrazyEngine.Any.Component;
 
-import me.KrazyManJ.KrazyEngine.NMS.NBTEditor.NBTEditor;
+import io.github.bananapuncher714.nbteditor.NBTEditor;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.ItemTag;

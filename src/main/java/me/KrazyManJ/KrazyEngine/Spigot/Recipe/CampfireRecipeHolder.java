@@ -13,15 +13,16 @@ public final class CampfireRecipeHolder extends ACookingRecipeHolder<CampfireRec
 
     public static final int DEFAULT_COOKING_TIME = 600;
 
-    public CampfireRecipeHolder(@NotNull ItemStack result, @NotNull ItemStack input, ItemStack... otherInputs) {
-        super(result, DEFAULT_COOKING_TIME, input, otherInputs);
+    public CampfireRecipeHolder(String id, @NotNull ItemStack result, @NotNull ItemStack input, ItemStack... otherInputs) {
+        super(id, result, DEFAULT_COOKING_TIME, input, otherInputs);
     }
-    public CampfireRecipeHolder(@NotNull ItemStack result, @NotNull Material input, Material... otherInputs) {
-        super(result, DEFAULT_COOKING_TIME, input, otherInputs);
+
+    public CampfireRecipeHolder(String id, @NotNull ItemStack result, @NotNull Material input, Material... otherInputs) {
+        super(id, result, DEFAULT_COOKING_TIME, input, otherInputs);
     }
 
     @Override
-    public @NotNull Recipe createRecipe(JavaPlugin plugin, String key) {
-        return new CampfireRecipe(new NamespacedKey(plugin,key),result,toRecipeChoice(),expReward,cookingTime);
+    public @NotNull Recipe createRecipe(JavaPlugin plugin) {
+        return new CampfireRecipe(new NamespacedKey(plugin, getId()), result, toRecipeChoice(), expReward, cookingTime);
     }
 }

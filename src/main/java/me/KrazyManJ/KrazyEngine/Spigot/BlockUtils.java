@@ -11,7 +11,8 @@ import java.util.Objects;
 @SuppressWarnings("unused")
 public final class BlockUtils {
 
-    @Deprecated private BlockUtils(){}
+    private BlockUtils() {
+    }
 
     public static boolean isTop(Player player, Block block) {
         Location start = player.getEyeLocation().clone();
@@ -19,11 +20,12 @@ public final class BlockUtils {
             start.add(player.getLocation().getDirection().multiply(0.05D));
         return (start.getY() % 1.0D > 0.5D);
     }
+
     public static List<Block> getNearbyBlocks(Location location, int radius) {
         List<Block> blocks = new ArrayList<>();
-        for(int x = location.getBlockX() - radius; x <= location.getBlockX() + radius; x++) {
-            for(int y = location.getBlockY() - radius; y <= location.getBlockY() + radius; y++) {
-                for(int z = location.getBlockZ() - radius; z <= location.getBlockZ() + radius; z++) {
+        for (int x = location.getBlockX() - radius; x <= location.getBlockX() + radius; x++) {
+            for (int y = location.getBlockY() - radius; y <= location.getBlockY() + radius; y++) {
+                for (int z = location.getBlockZ() - radius; z <= location.getBlockZ() + radius; z++) {
                     blocks.add(Objects.requireNonNull(location.getWorld()).getBlockAt(x, y, z));
                 }
             }

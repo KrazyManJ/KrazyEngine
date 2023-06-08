@@ -77,7 +77,7 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>Direct Known Subclasses:</dt>
-<dd><code><a href="ACookingRecipeHolder.html" title="class in me.KrazyManJ.KrazyEngine.Spigot.Recipe">ACookingRecipeHolder</a></code>, <code><a href="ShapedRecipeHolder.html" title="class in me.KrazyManJ.KrazyEngine.Spigot.Recipe">ShapedRecipeHolder</a></code>, <code><a href="ShapelessRecipeHolder.html" title="class in me.KrazyManJ.KrazyEngine.Spigot.Recipe">ShapelessRecipeHolder</a></code>, <code><a href="SmithingRecipeHolder.html" title="class in me.KrazyManJ.KrazyEngine.Spigot.Recipe">SmithingRecipeHolder</a></code></dd>
+<dd><code><a href="ACookingRecipeHolder.html" title="class in me.KrazyManJ.KrazyEngine.Spigot.Recipe">ACookingRecipeHolder</a></code>, <code><a href="ShapedRecipeHolder.html" title="class in me.KrazyManJ.KrazyEngine.Spigot.Recipe">ShapedRecipeHolder</a></code>, <code><a href="ShapelessRecipeHolder.html" title="class in me.KrazyManJ.KrazyEngine.Spigot.Recipe">ShapelessRecipeHolder</a></code>, <code><a href="SmithingRecipeHolder.html" title="class in me.KrazyManJ.KrazyEngine.Spigot.Recipe">SmithingRecipeHolder</a></code>, <code><a href="StonecuttingRecipeHolder.html" title="class in me.KrazyManJ.KrazyEngine.Spigot.Recipe">StonecuttingRecipeHolder</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public abstract class </span><span class="element-name type-name-label">ARecipeHolder</span>
@@ -94,9 +94,12 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Field</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>protected org.bukkit.inventory.ItemStack</code></div>
-<div class="col-second even-row-color"><code><a href="#result" class="member-name-link">result</a></code></div>
+<div class="col-first even-row-color"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color"><code><a href="#id" class="member-name-link">id</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>protected org.bukkit.inventory.ItemStack</code></div>
+<div class="col-second odd-row-color"><code><a href="#result" class="member-name-link">result</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
 </div>
 </section>
 </li>
@@ -112,11 +115,16 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract @NotNull org.bukkit.inventory.Recipe</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#createRecipe(org.bukkit.plugin.java.JavaPlugin,java.lang.String)" class="member-name-link">createRecipe</a><wbr>(org.bukkit.plugin.java.JavaPlugin&nbsp;plugin,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#createRecipe(org.bukkit.plugin.java.JavaPlugin)" class="member-name-link">createRecipe</a><wbr>(org.bukkit.plugin.java.JavaPlugin&nbsp;plugin)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final org.bukkit.inventory.ItemStack</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getResult()" class="member-name-link">getResult</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getId()" class="member-name-link">getId</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final org.bukkit.inventory.ItemStack</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getResult()" class="member-name-link">getResult</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setId(java.lang.String)" class="member-name-link">setId</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;id)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="ARecipeHolder.html" title="class in me.KrazyManJ.KrazyEngine.Spigot.Recipe">ARecipeHolder</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setResult(org.bukkit.inventory.ItemStack)" class="member-name-link">setResult</a><wbr>(@NotNull org.bukkit.inventory.ItemStack&nbsp;result)</code></div>
@@ -138,6 +146,12 @@ loadScripts(document, 'script');</script>
 <section class="field-details" id="field-detail">
 <h2>Field Details</h2>
 <ul class="member-list">
+<li>
+<section class="detail" id="id">
+<h3>id</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">id</span></div>
+</section>
+</li>
 <li>
 <section class="detail" id="result">
 <h3>result</h3>
@@ -166,11 +180,22 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="createRecipe(org.bukkit.plugin.java.JavaPlugin,java.lang.String)">
+<section class="detail" id="getId()">
+<h3>getId</h3>
+<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getId</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="setId(java.lang.String)">
+<h3>setId</h3>
+<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setId</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;id)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="createRecipe(org.bukkit.plugin.java.JavaPlugin)">
 <h3>createRecipe</h3>
 <div class="member-signature"><span class="annotations">@NotNull
-</span><span class="modifiers">public abstract</span>&nbsp;<span class="return-type">@NotNull org.bukkit.inventory.Recipe</span>&nbsp;<span class="element-name">createRecipe</span><wbr><span class="parameters">(org.bukkit.plugin.java.JavaPlugin&nbsp;plugin,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</span></div>
+</span><span class="modifiers">public abstract</span>&nbsp;<span class="return-type">@NotNull org.bukkit.inventory.Recipe</span>&nbsp;<span class="element-name">createRecipe</span><wbr><span class="parameters">(org.bukkit.plugin.java.JavaPlugin&nbsp;plugin)</span></div>
 </section>
 </li>
 </ul>

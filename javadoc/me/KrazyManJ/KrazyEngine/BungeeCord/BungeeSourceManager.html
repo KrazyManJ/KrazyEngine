@@ -78,6 +78,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">BungeeSourceManager</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Manages unpacking of resources from proxy server plugin</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -93,11 +94,13 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#copyFromSource(net.md_5.bungee.api.plugin.Plugin,java.lang.String,java.io.File,java.nio.file.CopyOption...)" class="member-name-link">copyFromSource</a><wbr>(net.md_5.bungee.api.plugin.Plugin&nbsp;plugin,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;path,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/File.html" title="class or interface in java.io" class="external-link">File</a>&nbsp;file,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#copyFromSource(net.md_5.bungee.api.plugin.Plugin,java.lang.String,java.io.File,java.nio.file.CopyOption...)" class="member-name-link">copyFromSource</a><wbr>(@NotNull net.md_5.bungee.api.plugin.Plugin&nbsp;plugin,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;resourcePath,
+ @NotNull <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/File.html" title="class or interface in java.io" class="external-link">File</a>&nbsp;file,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/CopyOption.html" title="class or interface in java.nio.file" class="external-link">CopyOption</a>...&nbsp;options)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Copy file from source of proxy plugin</div>
+</div>
 </div>
 </div>
 </div>
@@ -118,10 +121,20 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="copyFromSource(net.md_5.bungee.api.plugin.Plugin,java.lang.String,java.io.File,java.nio.file.CopyOption...)">
 <h3>copyFromSource</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">copyFromSource</span><wbr><span class="parameters">(net.md_5.bungee.api.plugin.Plugin&nbsp;plugin,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;path,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/File.html" title="class or interface in java.io" class="external-link">File</a>&nbsp;file,
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">copyFromSource</span><wbr><span class="parameters">(@NotNull
+ @NotNull net.md_5.bungee.api.plugin.Plugin&nbsp;plugin,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;resourcePath,
+ @NotNull
+ @NotNull <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/File.html" title="class or interface in java.io" class="external-link">File</a>&nbsp;file,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/CopyOption.html" title="class or interface in java.nio.file" class="external-link">CopyOption</a>...&nbsp;options)</span></div>
+<div class="block">Copy file from source of proxy plugin</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>plugin</code> - proxy plugin</dd>
+<dd><code>resourcePath</code> - path to resource in jar package</dd>
+<dd><code>file</code> - output file destination</dd>
+<dd><code>options</code> - copy options in use for copy task</dd>
+</dl>
 </section>
 </li>
 </ul>

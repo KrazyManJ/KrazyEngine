@@ -1,6 +1,6 @@
 package me.KrazyManJ.KrazyEngine.Any.Command;
 
-import me.KrazyManJ.KrazyEngine.Spigot.CommandMapRegistry;
+import me.KrazyManJ.KrazyEngine.Spigot.Command.CommandMapRegistry;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Marker;

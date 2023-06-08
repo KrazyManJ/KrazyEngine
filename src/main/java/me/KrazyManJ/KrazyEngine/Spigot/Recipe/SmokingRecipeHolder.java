@@ -13,16 +13,16 @@ public final class SmokingRecipeHolder extends ACookingRecipeHolder<SmokingRecip
 
     public static final int DEFAULT_COOKING_TIME = 100;
 
-    SmokingRecipeHolder(@NotNull ItemStack result, @NotNull ItemStack input, ItemStack... otherInputs) {
-        super(result, DEFAULT_COOKING_TIME, input, otherInputs);
+    SmokingRecipeHolder(String id, @NotNull ItemStack result, @NotNull ItemStack input, ItemStack... otherInputs) {
+        super(id, result, DEFAULT_COOKING_TIME, input, otherInputs);
     }
 
-    SmokingRecipeHolder(@NotNull ItemStack result,  @NotNull Material input, Material... otherInputs) {
-        super(result, DEFAULT_COOKING_TIME, input, otherInputs);
+    SmokingRecipeHolder(String id, @NotNull ItemStack result, @NotNull Material input, Material... otherInputs) {
+        super(id, result, DEFAULT_COOKING_TIME, input, otherInputs);
     }
 
     @Override
-    public @NotNull Recipe createRecipe(JavaPlugin plugin, String key) {
-        return new SmokingRecipe( new NamespacedKey(plugin,key), result, toRecipeChoice(), expReward, cookingTime);
+    public @NotNull Recipe createRecipe(JavaPlugin plugin) {
+        return new SmokingRecipe(new NamespacedKey(plugin, id), result, toRecipeChoice(), expReward, cookingTime);
     }
 }

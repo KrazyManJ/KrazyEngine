@@ -1,8 +1,4 @@
-***
-
 <h1 align=center >KrazyEngine</h1>
-
-***
 
 <h2 align=center>Features:</h2>
 
@@ -16,13 +12,13 @@
 - <kbd>MySQL</kbd> *MySQL database manipulation, execute queries, read data, etc.*
 - <kbd>Tab Builder</kbd> *Allows building simple tab completion.*
 
-### Bungeecord
+### Proxy server features
 
 - <kbd>Bungee Config Container</kbd> *ConfigHolder for Bungeecord configuration*
 - <kbd>Bungee Logging</kbd> *Easy logging to bungeecord, you can choose from info, warn, or error*
 - <kbd>Bungee Source Manager</kbd> *Manage copying files from source easily*
 
-### Spigot
+### Backend server features
 
 - <kbd>Stack Maker</kbd> *Create ItemStacks easily, with basic builder, set name, enchants, lore and even more*
 - <kbd>Skull</kbd> *Create player head (Skull) from OfflinePlayer instance, player name, or even base64 value*
@@ -34,4 +30,8 @@
 - <kbd>Spigot Source Manager</kbd> *Manage copying files from source easily*
 - <kbd>Utilities</kbd> *Adding methods, that make life easier*
 
-***
+<h2>Third party libraries</h2>
+
+This library uses a few libraries, that are not created by myself, so here is a full list:
+
+- [BananaPuncher714/NBTEditor](https://github.com/BananaPuncher714/NBTEditor)

@@ -1,6 +1,6 @@
-package me.KrazyManJ.KrazyEngine.Spigot;
+package me.KrazyManJ.KrazyEngine.Spigot.Command;
 
-import me.KrazyManJ.KrazyEngine.Any.ListMerger;
+import me.KrazyManJ.KrazyEngine.Any.Merger;
 import me.KrazyManJ.KrazyEngine.Core.ReflectionHandler;
 import me.KrazyManJ.KrazyEngine.Core.ReflectionUsed;
 import org.bukkit.Bukkit;
@@ -14,7 +14,7 @@ import java.util.HashMap;
 @ReflectionUsed
 public final class CommandMapRegistry {
 
-    @Deprecated private CommandMapRegistry() {}
+    private CommandMapRegistry() {}
 
     private static SimpleCommandMap commandMap;
     private static HashMap<String, Command> knownCommands;
@@ -23,9 +23,9 @@ public final class CommandMapRegistry {
 
     static {
         try {
-            commandMap = (SimpleCommandMap) ReflectionHandler.accessibleField(Bukkit.getServer().getClass()
+            commandMap = (SimpleCommandMap) ReflectionHandler.makeFieldAccessible(Bukkit.getServer().getClass()
                     .getDeclaredField("commandMap")).get(Bukkit.getServer());
-            knownCommands = (HashMap<String, Command>) ReflectionHandler.accessibleField(
+            knownCommands = (HashMap<String, Command>) ReflectionHandler.makeFieldAccessible(
                     SimpleCommandMap.class.getDeclaredField("knownCommands")).get(commandMap);
             craftServer = ReflectionHandler.craftbukkitClass("CraftServer");
             syncCommands = craftServer.getDeclaredMethod("syncCommands");
@@ -69,7 +69,7 @@ public final class CommandMapRegistry {
     public static synchronized void unregister(String namespace, Command command){
         if (commandMap == null || knownCommands == null) return;
         command.unregister(commandMap);
-        for (String label : ListMerger.merge(command.getAliases(),command.getName())){
+        for (String label : Merger.mergeToList(command.getAliases(),command.getName())){
             if(knownCommands.containsKey(label) && knownCommands.get(label).getName().equals(command.getName())){
                 knownCommands.entrySet().removeIf(e -> e.getKey().contains(namespace + ":" + label) || e.getKey().equals(label));
                 Bukkit.getHelpMap().getHelpTopics().removeIf(e -> e.getName().equals("/"+command.getName()));

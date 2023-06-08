@@ -9,10 +9,11 @@ me.KrazyManJ.KrazyEngine.Any.Text
 me.KrazyManJ.KrazyEngine.Any.Tree
 me.KrazyManJ.KrazyEngine.BungeeCord
 me.KrazyManJ.KrazyEngine.BungeeCord.Command.TabBuilder
+me.KrazyManJ.KrazyEngine.BungeeCord.Config
 me.KrazyManJ.KrazyEngine.Core
 me.KrazyManJ.KrazyEngine.Core.Command.TabBuilder
-me.KrazyManJ.KrazyEngine.NMS.NBTEditor
 me.KrazyManJ.KrazyEngine.Spigot
+me.KrazyManJ.KrazyEngine.Spigot.Command
 me.KrazyManJ.KrazyEngine.Spigot.Command.TabBuilder
 me.KrazyManJ.KrazyEngine.Spigot.Inventory
 me.KrazyManJ.KrazyEngine.Spigot.Item

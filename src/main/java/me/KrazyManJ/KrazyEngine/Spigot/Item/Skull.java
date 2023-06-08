@@ -23,7 +23,7 @@ public final class Skull {
 
     static {
         try {
-            profileField = ReflectionHandler.accessibleField(
+            profileField = ReflectionHandler.makeFieldAccessible(
                     ReflectionHandler.craftbukkitClass("inventory.CraftMetaSkull").getDeclaredField("profile"));
         } catch (NoSuchFieldException | ClassNotFoundException e) { e.printStackTrace(); }
     }

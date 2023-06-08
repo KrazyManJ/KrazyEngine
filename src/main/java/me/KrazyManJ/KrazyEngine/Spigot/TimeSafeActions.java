@@ -5,13 +5,18 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
+@SuppressWarnings("unused")
 public final class TimeSafeActions {
 
-    @Deprecated private TimeSafeActions() {}
+    private TimeSafeActions() {
+    }
 
-    public static void teleport(Plugin plugin, Player player, Location destination){
+    public static void teleport(Plugin plugin, Player player, Location destination) {
         new BukkitRunnable() {
-            @Override public void run() { player.teleport(destination); }
-        }.runTaskLater(plugin,1);
+            @Override
+            public void run() {
+                player.teleport(destination);
+            }
+        }.runTaskLater(plugin, 1);
     }
 }

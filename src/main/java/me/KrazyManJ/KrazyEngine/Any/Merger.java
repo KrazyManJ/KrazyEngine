@@ -1,0 +1,32 @@
+package me.KrazyManJ.KrazyEngine.Any;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
+
+@SuppressWarnings({"unused", "unchecked"})
+public final class Merger {
+
+    private Merger() {
+    }
+
+    @SafeVarargs
+    public static <T> List<T> mergeToList(List<T> list, T object, T... objects) {
+        List<T> r = new ArrayList<>(list);
+        r.add(object);
+        r.addAll(List.of(objects));
+        return r;
+    }
+
+    public static <T> List<T> mergeToList(T object, List<T> list) {
+        List<T> r = new ArrayList<>(list);
+        r.add(0, object);
+        return r;
+    }
+
+    @SafeVarargs
+    public static <T> T[] mergeToArray(T object, T... objects) {
+        return (T[]) Stream.concat(Stream.of(object), Arrays.stream(objects)).toArray();
+    }
+}

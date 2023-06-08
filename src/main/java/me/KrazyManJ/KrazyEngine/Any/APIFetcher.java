@@ -17,16 +17,16 @@ public final class APIFetcher {
 
     @Deprecated private APIFetcher() {}
 
-    public static JsonElement fetchJson(String link) {
+    public static JsonElement fetchJson(String url) {
         try {
-            URL url = new URL(link);
-            URLConnection request = url.openConnection();
+            URL u = new URL(url);
+            URLConnection request = u.openConnection();
             request.connect();
             return JsonParser.parseReader(new InputStreamReader((InputStream) request.getContent()));
         }
         catch (IOException e) {
             e.printStackTrace();
-            return new JsonObject();
+            return null;
         }
     }
     public static String fetchString(String url) {

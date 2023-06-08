@@ -11,13 +11,11 @@ import java.nio.file.Files;
 @SuppressWarnings({"unused"})
 public final class SpigotSourceManager {
 
-    @Deprecated
     private SpigotSourceManager() {
     }
 
     public static void copyFromSource(JavaPlugin plugin, String path, File file, CopyOption... options) {
-        InputStream in = plugin.getResource(path);
-        try {
+        try (InputStream in = plugin.getResource(path)) {
             assert in != null;
             Files.copy(in, file.toPath(), options);
         } catch (IOException e) {

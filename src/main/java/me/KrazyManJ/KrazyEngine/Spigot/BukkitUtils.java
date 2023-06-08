@@ -8,12 +8,14 @@ import java.util.List;
 @SuppressWarnings("unused")
 public final class BukkitUtils {
 
-    @Deprecated private BukkitUtils() {}
+    private BukkitUtils() {
+    }
 
-    public static List<String> getOnlinePlayerNames(){
+    public static List<String> getOnlinePlayerNames() {
         return Bukkit.getOnlinePlayers().stream().map(HumanEntity::getName).toList();
     }
-    public static boolean isAnyPlayerOnline(){
+
+    public static boolean isAnyPlayerOnline() {
         return Bukkit.getOnlinePlayers().size() > 0;
     }
 }

@@ -11,10 +11,14 @@ repositories {
     maven {
         url = uri("https://repo.maven.apache.org/maven2/")
     }
+    maven {
+        url = uri("https://repo.codemc.org/repository/maven-public/")
+    }
 }
 
 dependencies {
     api("org.jetbrains:annotations:24.0.1")
+    api("io.github.bananapuncher714:nbteditor:7.18.5")
     compileOnly("org.spigotmc:spigot:1.19.4-R0.1-SNAPSHOT")
     compileOnly("net.md-5:bungeecord-api:1.19-R0.1-SNAPSHOT")
 }
@@ -34,6 +38,7 @@ fun excludingLib(compiled: Boolean): List<String> {
 
 java {
     withJavadocJar()
+    withSourcesJar()
 }
 
 fun registerShadowJarTask(classifier: String ,excludes: List<String>): RegisteringDomainObjectDelegateProviderWithTypeAndAction<out TaskContainer, ShadowJar> {
@@ -41,7 +46,6 @@ fun registerShadowJarTask(classifier: String ,excludes: List<String>): Registeri
         from(project.extensions.findByType(JavaPluginExtension::class)?.sourceSets?.main?.get()?.output)
         configurations = listOf(project.configurations.runtimeClasspath.get())
         archiveClassifier.set(classifier)
-        minimize()
         exclude("META-INF/INDEX.LIST", "META-INF/*.SF", "META-INF/*.DSA", "META-INF/*.RSA")
         exclude(excludes)
     }
@@ -65,7 +69,7 @@ tasks {
         exclude(excludingLib(false))
     }
     shadowJar {
-        dependsOn(libJar, pluginJar)
+        dependsOn(libJar, pluginJar, getByName("javadocJar"))
         group = "custom"
         enabled = false
     }

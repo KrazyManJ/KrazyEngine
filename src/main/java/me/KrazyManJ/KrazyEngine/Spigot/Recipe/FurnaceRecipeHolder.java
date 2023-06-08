@@ -13,15 +13,16 @@ public final class FurnaceRecipeHolder extends ACookingRecipeHolder<FurnaceRecip
 
     public static final int DEFAULT_COOKING_TIME = 200;
 
-    public FurnaceRecipeHolder(@NotNull ItemStack result, @NotNull ItemStack input, ItemStack ...otherInputs) {
-        super(result,DEFAULT_COOKING_TIME,input,otherInputs);
+    public FurnaceRecipeHolder(String id, @NotNull ItemStack result, @NotNull ItemStack input, ItemStack... otherInputs) {
+        super(id, result, DEFAULT_COOKING_TIME, input, otherInputs);
     }
-    public FurnaceRecipeHolder(@NotNull ItemStack result, @NotNull Material input, Material ...otherInputs) {
-        super(result,DEFAULT_COOKING_TIME,input,otherInputs);
+
+    public FurnaceRecipeHolder(String id, @NotNull ItemStack result, @NotNull Material input, Material... otherInputs) {
+        super(id, result, DEFAULT_COOKING_TIME, input, otherInputs);
     }
 
     @Override
-    public @NotNull Recipe createRecipe(JavaPlugin plugin, String key) {
-        return new FurnaceRecipe( new NamespacedKey(plugin,key), result, toRecipeChoice(), expReward, cookingTime);
+    public @NotNull Recipe createRecipe(JavaPlugin plugin) {
+        return new FurnaceRecipe(new NamespacedKey(plugin, getId()), result, toRecipeChoice(), expReward, cookingTime);
     }
 }
