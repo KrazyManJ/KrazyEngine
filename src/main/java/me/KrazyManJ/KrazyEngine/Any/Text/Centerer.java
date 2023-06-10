@@ -25,7 +25,7 @@ public final class Centerer {
     public static int getWidth(String t){
         int size = 0;
         for (String split : t.replaceAll("(?i)§x(§[0-9a-f]){6}","§a").split("(?i)(?=§[a-f0-9lr])")) {
-            String cleared = ColorUtils.clearColors(split);
+            String cleared = ColorTranslator.clearAllColors(split);
             int width = 0;
             for (char ch : cleared.toCharArray()){
                 try {

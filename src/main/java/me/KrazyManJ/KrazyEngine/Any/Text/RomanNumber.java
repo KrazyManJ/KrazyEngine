@@ -9,22 +9,24 @@ import java.util.HashMap;
 @SuppressWarnings("unused")
 public final class RomanNumber {
 
-    @Deprecated private RomanNumber() {}
+    private RomanNumber() {
+    }
 
-    public static String encode(int integer){
+    public static String encode(int integer) {
         StringBuilder roman = new StringBuilder();
-        for(RomanLiteral literal : RomanLiteral.values()) {
-            while(integer >= literal.getValue()) {
+        for (RomanLiteral literal : RomanLiteral.values()) {
+            while (integer >= literal.getValue()) {
                 integer -= literal.getValue();
                 roman.append(literal);
             }
         }
         return roman.toString();
     }
+
     public static int decode(@NotNull String roman) {
         if (roman.length() == 0 || !isRoman(roman)) return -1;
         HashMap<Character, Integer> map = new HashMap<>();
-        for (RomanLiteral r : RomanLiteral.getSubtractive()) map.put(r.toString().charAt(0),r.getValue());
+        for (RomanLiteral r : RomanLiteral.getSubtractive()) map.put(r.toString().charAt(0), r.getValue());
         int result = map.get(roman.charAt(roman.length() - 1));
         for (int i = roman.length() - 2; i >= 0; i--) {
             if (map.get(roman.charAt(i)) >= map.get(roman.charAt(i + 1))) result += map.get(roman.charAt(i));
@@ -32,8 +34,9 @@ public final class RomanNumber {
         }
         return result;
     }
-    public static boolean isRoman(@NotNull String roman){
-        return roman.matches("^"+ RegexConstants.romanNumeral.pattern()+"$");
+
+    public static boolean isRoman(@NotNull String roman) {
+        return roman.matches("^" + RegexConstants.romanNumeral.pattern() + "$");
     }
 
     private enum RomanLiteral {
@@ -52,11 +55,22 @@ public final class RomanNumber {
         I(1);
 
         private final int value;
-        RomanLiteral(int value) { this.value = value; }
-        public int getValue(){ return value; }
-        public static RomanLiteral[] getSubtractive(){
+
+        RomanLiteral(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
+
+        public static RomanLiteral[] getSubtractive() {
             return Arrays.stream(values()).filter(f -> (f.ordinal() + 1) % 2 != 0).toList().toArray(new RomanLiteral[0]);
         }
-        @Override public String toString() {return name();}
+
+        @Override
+        public String toString() {
+            return name();
+        }
     }
 }

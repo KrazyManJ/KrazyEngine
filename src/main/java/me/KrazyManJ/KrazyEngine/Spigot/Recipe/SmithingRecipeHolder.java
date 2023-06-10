@@ -31,22 +31,22 @@ public final class SmithingRecipeHolder extends ARecipeHolder {
     }
 
     public SmithingRecipeHolder setBase(@NotNull ItemStack base, ItemStack... otherBaseChoices) {
-        this.base = new RecipeChoice.ExactChoice(Merger.mergeToList(base, List.of(otherBaseChoices)));
+        this.base = new RecipeChoice.ExactChoice(Merger.mergeToListAtStart(base, List.of(otherBaseChoices)));
         return this;
     }
 
     public SmithingRecipeHolder setBase(@NotNull Material base, Material... otherBaseChoices) {
-        this.base = new RecipeChoice.MaterialChoice(Merger.mergeToList(base, List.of(otherBaseChoices)));
+        this.base = new RecipeChoice.MaterialChoice(Merger.mergeToListAtStart(base, List.of(otherBaseChoices)));
         return this;
     }
 
     public SmithingRecipeHolder setAddition(@NotNull ItemStack addition, ItemStack... otherAdditionChoices) {
-        this.addition = new RecipeChoice.ExactChoice(Merger.mergeToList(addition, List.of(otherAdditionChoices)));
+        this.addition = new RecipeChoice.ExactChoice(Merger.mergeToListAtStart(addition, List.of(otherAdditionChoices)));
         return this;
     }
 
     public SmithingRecipeHolder setAddition(@NotNull Material addition, Material... otherAdditionChoices) {
-        this.addition = new RecipeChoice.MaterialChoice(Merger.mergeToList(addition, List.of(otherAdditionChoices)));
+        this.addition = new RecipeChoice.MaterialChoice(Merger.mergeToListAtStart(addition, List.of(otherAdditionChoices)));
         return this;
     }
 

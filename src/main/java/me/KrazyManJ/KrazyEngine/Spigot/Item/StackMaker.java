@@ -1,6 +1,6 @@
 package me.KrazyManJ.KrazyEngine.Spigot.Item;
 
-import me.KrazyManJ.KrazyEngine.Any.Text.ColorUtils;
+import me.KrazyManJ.KrazyEngine.Any.Text.ColorTranslator;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.attribute.Attribute;
@@ -41,7 +41,7 @@ public final class StackMaker {
     public StackMaker displayName(String name){
         ItemMeta m = stack.getItemMeta();
         assert m != null;
-        m.setDisplayName(ColorUtils.colorizeHex(name));
+        m.setDisplayName(ColorTranslator.formatEverything(name));
         stack.setItemMeta(m);
         return this;
     }
@@ -49,14 +49,14 @@ public final class StackMaker {
     public StackMaker lore(String ...lore){
         ItemMeta m = stack.getItemMeta();
         assert m != null;
-        m.setLore(ColorUtils.colorizeHex(Arrays.asList(lore)));
+        m.setLore(Arrays.stream(lore).map(ColorTranslator::formatEverything).toList());
         stack.setItemMeta(m);
         return this;
     }
     public StackMaker lore(List<String> lore){
         ItemMeta m = stack.getItemMeta();
         assert m != null;
-        m.setLore(ColorUtils.colorizeHex(lore));
+        m.setLore(lore.stream().map(ColorTranslator::formatEverything).toList());
         stack.setItemMeta(m);
         return this;
     }

@@ -17,14 +17,14 @@ public abstract class ACookingRecipeHolder<T extends ACookingRecipeHolder> exten
 
     ACookingRecipeHolder(String id, @NotNull ItemStack result, int defCookTime, @NotNull ItemStack input, ItemStack... otherInputs) {
         super(id, result);
-        this.input = Merger.mergeToList(input, List.of(otherInputs));
+        this.input = Merger.mergeToListAtStart(input, List.of(otherInputs));
         this.cookingTime = defCookTime;
         this.expReward = 0F;
     }
 
     ACookingRecipeHolder(String id, @NotNull ItemStack result, int defCookTime, @NotNull Material input, Material... otherInputs) {
         super(id, result);
-        this.input = Merger.mergeToList(input, List.of(otherInputs));
+        this.input = Merger.mergeToListAtStart(input, List.of(otherInputs));
         this.cookingTime = defCookTime;
         this.expReward = 0F;
     }

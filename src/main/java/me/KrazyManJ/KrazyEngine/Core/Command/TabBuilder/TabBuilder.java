@@ -1,12 +1,11 @@
 package me.KrazyManJ.KrazyEngine.Core.Command.TabBuilder;
 
-import me.KrazyManJ.KrazyEngine.Any.Command.TabCompleteUtils;
-import org.bukkit.Bukkit;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @SuppressWarnings({"unused", "UnusedReturnValue", "unchecked"})
 public abstract class TabBuilder<B extends TabBuilder<B, F, S>, F extends TabField<F, S>, S> {
@@ -14,7 +13,7 @@ public abstract class TabBuilder<B extends TabBuilder<B, F, S>, F extends TabFie
     private final List<String> defaultList;
 
     public TabBuilder() {
-        defaultList = new ArrayList<>();
+        defaultList = emptySuggestions();
     }
 
     public TabBuilder(@NotNull List<String> defaultInsert) {
@@ -42,13 +41,22 @@ public abstract class TabBuilder<B extends TabBuilder<B, F, S>, F extends TabFie
                 }
             }
             if (!found) {
-                Bukkit.broadcastMessage("test");
                 return defaultList;
             }
         }
 
         List<String> stringList = new ArrayList<>();
         for (F field : currFields) if (field.meetRequirement(sender)) stringList.addAll(field.getArgs(sender));
-        return TabCompleteUtils.suggestByInput(args[args.length - 1], stringList);
+        return suggestByInput(args[args.length - 1], stringList);
+    }
+
+    public static List<String> emptySuggestions() {
+        return new ArrayList<>();
+    }
+
+    private static List<String> suggestByInput(@NotNull String input, List<String> suggestions) {
+        return (!input.equals(""))
+                ? suggestions.stream().filter(f -> f.toLowerCase().contains(input.toLowerCase())).collect(Collectors.toList())
+                : suggestions;
     }
 }
