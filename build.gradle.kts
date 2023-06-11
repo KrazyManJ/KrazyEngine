@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     `java-library`
     `maven-publish`
@@ -31,11 +33,15 @@ java {
     withJavadocJar()
 }
 
+val localProperties = Properties()
+localProperties.load(project.rootProject.file("testserverfolders.properties").inputStream())
 
 val pluginJar by tasks.registering(Jar::class) {
     from(sourceSets.main.get().output)
     archiveClassifier.set("plugin")
 }
+
+
 
 tasks {
     withType<JavaCompile> {
@@ -44,17 +50,28 @@ tasks {
     withType<Javadoc> {
         options.encoding = "UTF-8"
     }
+    register("compileToBungeeTest",Jar::class) {
+        from(sourceSets.main.get().output)
+        destinationDirectory.set(file(localProperties.getProperty("bungee")))
+        group = "AKrazyEngine"
+    }
+    register("compileToSpigotTest",Jar::class) {
+        from(sourceSets.main.get().output)
+        destinationDirectory.set(file(localProperties.getProperty("spigot")))
+        group = "AKrazyEngine"
+    }
     jar {
         dependsOn(pluginJar)
         archiveClassifier.set("")
         exclude(excludingLib(false))
+        group = "AKrazyEngine"
     }
     javadoc {
         destinationDir = file("${rootProject.rootDir}/javadoc")
         exclude(excludingLib(false))
     }
     publishToMavenLocal {
-        group = "custom"
+        group = "AKrazyEngine"
     }
 }
 

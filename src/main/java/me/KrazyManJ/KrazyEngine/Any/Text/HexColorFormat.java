@@ -23,7 +23,7 @@ public enum HexColorFormat {
     FORMATTED(
             Pattern.compile("(?mi)§x(?:§[0-9a-f]){6}"),
             s -> s.substring(3).split("§"),
-            chars -> "&x&" + String.join("§", chars)
+            chars -> "§x§" + String.join("§", chars)
     ),
     /**
      * Format: &amp;#09afAF
@@ -47,7 +47,7 @@ public enum HexColorFormat {
     MOTD(
             Pattern.compile("(?mi)\\\\u00A7x(?:\\\\u00A7[0-9a-f]){6}"),
             s -> s.substring(3).split("\\\\u00A7"),
-            chars -> "&x&" + String.join("\\\\u00A7", chars)
+            chars -> "\\\\u00A7x\\\\u00A7" + String.join("\\\\u00A7", chars)
     ),
     /**
      * Format: &lt;#09afAF&gt;

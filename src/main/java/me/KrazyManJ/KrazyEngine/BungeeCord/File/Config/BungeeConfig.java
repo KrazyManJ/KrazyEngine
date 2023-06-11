@@ -18,6 +18,7 @@ import java.nio.file.StandardCopyOption;
  */
 @SuppressWarnings({"unused", "ResultOfMethodCallIgnored"})
 public final class BungeeConfig {
+
     private Configuration configuration;
     private final File file;
     private final Plugin plugin;
@@ -27,38 +28,30 @@ public final class BungeeConfig {
         return new BungeeConfig(plugin,"config.yml",new File(plugin.getDataFolder(),"config.yml"));
     }
 
-    public BungeeConfig(Plugin plugin, String resourcePath, File file, boolean init){
+    public BungeeConfig(Plugin plugin, String resourcePath, File file){
         this.file = file;
         this.plugin = plugin;
         this.resourcePath = resourcePath;
-        if (init){
-            if (!file.getParentFile().exists()) file.getParentFile().mkdirs();
-            copyDefaults();
-            load();
-        }
-    }
 
-    public BungeeConfig(Plugin plugin, String resourcePath, File file) {
-        this.file = file;
-        this.plugin = plugin;
-        this.resourcePath = resourcePath;
-        new BungeeConfig(plugin, resourcePath, file, true);
+        if (!file.getParentFile().exists()) file.getParentFile().mkdirs();
+        if (!file.exists()) copyDefaults();
+        load();
     }
 
     public void copyDefaults() {
         BungeeSourceManager.copyFromSource(plugin, resourcePath, file, StandardCopyOption.REPLACE_EXISTING);
     }
 
-    public Configuration get() {
+    public Configuration getConfiguration() {
         return configuration;
     }
 
     public <T> T getKeyValue(BungeeConfigKey<T> key){
-        return key.getFrom(get());
+        return key.getFrom(configuration);
     }
 
     public <T> T getKeyValue(BungeeConfigKey<T> key, T defaultVal){
-        return key.getFrom(get(), defaultVal);
+        return key.getFrom(configuration, defaultVal);
     }
 
     public void load() {

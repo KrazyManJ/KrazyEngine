@@ -3,11 +3,9 @@ package me.KrazyManJ.KrazyEngine.Any;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
-import net.md_5.bungee.api.plugin.Plugin;
 
 import java.io.*;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.ParameterizedType;
+import java.util.function.Supplier;
 
 /**
  * This class loads and saves json file. It uses package by google, so it can handle any kind of class.
@@ -26,23 +24,26 @@ import java.lang.reflect.ParameterizedType;
  * @param <T> Data structure of json data
  * @author KrazyManJ
  */
-@SuppressWarnings({"unchecked", "ResultOfMethodCallIgnored", "unused"})
+@SuppressWarnings({"ResultOfMethodCallIgnored", "unused"})
 public final class JsonFile<T> {
 
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    private final Class<T> T = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+    private final Class<T> tClass;
+    private final Supplier<T> init;
 
     private final File file;
     private T data;
 
-    public JsonFile(File file) {
+    public JsonFile(File file, Class<T> tClass, Supplier<T> init) {
         this.file = file;
+        this.tClass = tClass;
+        this.init = init;
         load();
     }
 
-    public static <T> JsonFile<T> defaultDataFile(File dataFolder){
-        return new JsonFile<>(new File(dataFolder, "data.json"));
+    public static <T> JsonFile<T> defaultDataFile(File dataFolder, Class<T> tClass, Supplier<T> init){
+        return new JsonFile<>(new File(dataFolder, "data.json"), tClass, init);
     }
 
     /**
@@ -50,14 +51,9 @@ public final class JsonFile<T> {
      */
     public void load() {
         try {
-            data = gson.fromJson(new JsonReader(new FileReader(file)), T);
+            data = gson.fromJson(new JsonReader(new FileReader(file)), tClass);
         } catch (FileNotFoundException e) {
-            try {
-                data = T.getDeclaredConstructor().newInstance();
-            } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
-                     NoSuchMethodException ex) {
-                throw new RuntimeException(ex);
-            }
+            data = init.get();
         }
     }
 

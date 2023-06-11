@@ -1,6 +1,10 @@
-# Project exclude paths
-/build/
-
+# IntelliJ IDEA
 .idea
+
+# Gradle
 .gradle
+build
 gradle
+
+# FilePath properties
+testserverfolders.properties
