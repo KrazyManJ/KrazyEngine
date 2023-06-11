@@ -13,11 +13,18 @@ import org.bukkit.inventory.meta.SkullMeta;
 import java.lang.reflect.Field;
 import java.util.UUID;
 
+/**
+ * Class to create skulls (player heads) from base64 string
+ *
+ * @author KrazyManJ
+ */
 @SuppressWarnings("unused")
 @ReflectionUsed
 public final class Skull {
 
-    @Deprecated private Skull() {}
+    private Skull() {
+
+    }
 
     private static Field profileField;
 
@@ -25,12 +32,20 @@ public final class Skull {
         try {
             profileField = ReflectionHandler.makeFieldAccessible(
                     ReflectionHandler.craftbukkitClass("inventory.CraftMetaSkull").getDeclaredField("profile"));
-        } catch (NoSuchFieldException | ClassNotFoundException e) { e.printStackTrace(); }
+        } catch (NoSuchFieldException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
-    public static ItemStack fromValue(String base64, UUID uuid){
+    /**
+     * @param base64 Base64 string value
+     * @param uuid   UUID of player
+     * @return ItemStack of skull (player head)
+     * @author KrazyManJ
+     */
+    public static ItemStack fromValue(String base64, UUID uuid) {
         if (!base64.matches(RegexConstants.base64.pattern()))
-            try { throw new Exception(""); } catch (Exception e) { e.printStackTrace(); }
+            throw new IllegalArgumentException("Argument is not base64 string");
         ItemStack head = new ItemStack(Material.PLAYER_HEAD);
         if (profileField == null) return head;
 
@@ -41,11 +56,32 @@ public final class Skull {
         head.setItemMeta(meta);
         return head;
     }
-    public static ItemStack fromValue(String base64){
-        return fromValue(base64,UUID.randomUUID());
+
+    /**
+     * Gets player head from base64 value
+     * Same as {@link #fromValue(String, UUID)} but it doesn't need to provide {@link UUID}
+     *
+     * <p><b>
+     * Use this method only if you don't care, that generated player heads by this method
+     * cannot stack!
+     * </b></p>
+     *
+     * @param base64 Base64 string value
+     * @return ItemStack of skull (player head)
+     * @author KrazyManJ
+     */
+    public static ItemStack fromValue(String base64) {
+        return fromValue(base64, UUID.randomUUID());
     }
 
-    public static ItemStack ofPlayer(OfflinePlayer player){
+    /**
+     * Gets player head from offline player's instance
+     *
+     * @param player offline player to get skull of
+     * @return ItemStack of skull (player head)
+     * @author KrazyManJ
+     */
+    public static ItemStack ofPlayer(OfflinePlayer player) {
         ItemStack head = new ItemStack(Material.PLAYER_HEAD);
         SkullMeta meta = (SkullMeta) head.getItemMeta();
         assert meta != null;
@@ -54,8 +90,16 @@ public final class Skull {
         return head;
     }
 
+    /**
+     * Gets player head from player's name
+     *
+     * @param name Name of player
+     * @return ItemStack of skull (player head)
+     * @author KrazyManJ
+     * @deprecated
+     */
     @Deprecated
-    public static ItemStack byName(String name){
+    public static ItemStack byName(String name) {
         ItemStack head = new ItemStack(Material.PLAYER_HEAD);
         SkullMeta meta = (SkullMeta) head.getItemMeta();
         assert meta != null;

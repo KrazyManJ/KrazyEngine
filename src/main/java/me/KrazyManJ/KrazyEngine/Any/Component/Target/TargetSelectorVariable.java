@@ -1,5 +1,8 @@
 package me.KrazyManJ.KrazyEngine.Any.Component.Target;
 
+/**
+ * Selector variable used in {@link TargetSelectorBuilder} to determine, which kind of player or entity its targeting
+ */
 @SuppressWarnings("unused")
 public enum TargetSelectorVariable {
     NEAREST_PLAYER("@p"),

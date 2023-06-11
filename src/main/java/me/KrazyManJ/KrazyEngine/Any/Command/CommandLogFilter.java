@@ -15,6 +15,7 @@ import java.util.List;
 /**
  * Class that holds command and registers filter while logging command.
  * This filter is blacklist - commands in this class are not logged.
+ * @author KrazyManJ
  */
 @SuppressWarnings("unused")
 public final class CommandLogFilter {
@@ -24,6 +25,8 @@ public final class CommandLogFilter {
 
     /**
      * Registers pre-made filter that filters out commands that are invalid (non-existent)
+     *
+     * @author KrazyManJ
      */
     public static void registerValidFilter() {
         if (validRegistered) return;
@@ -38,6 +41,7 @@ public final class CommandLogFilter {
      *
      * @param command name of command, even with or without "/" char
      * @return this object
+     * @author KrazyManJ
      */
     public CommandLogFilter addCommand(String command) {
         if (!command.startsWith("/")) command = "/" + command;
@@ -47,6 +51,7 @@ public final class CommandLogFilter {
 
     /**
      * Registers this filter with commands added by {@link #addCommand(String)}
+     * @author KrazyManJ
      */
     public void register() {
         if (commands.size() == 0) return;

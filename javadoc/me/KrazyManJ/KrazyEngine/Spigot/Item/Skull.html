@@ -79,6 +79,7 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="annotations"><a href="../../Core/ReflectionUsed.html" title="annotation interface in me.KrazyManJ.KrazyEngine.Core">@ReflectionUsed</a>
 </span><span class="modifiers">public final class </span><span class="element-name type-name-label">Skull</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Class to create skulls (player heads) from base64 string</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -96,18 +97,23 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code>static org.bukkit.inventory.ItemStack</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#byName(java.lang.String)" class="member-name-link">byName</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6">
-<div class="block"><span class="deprecated-label">Deprecated.</span></div>
+<div class="block"><span class="deprecated-label">Deprecated.</span>&nbsp;</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static org.bukkit.inventory.ItemStack</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#fromValue(java.lang.String)" class="member-name-link">fromValue</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;base64)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Gets player head from base64 value
+ Same as <a href="#fromValue(java.lang.String,java.util.UUID)"><code>fromValue(String, UUID)</code></a> but it doesn't need to provide <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link"><code>UUID</code></a></div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static org.bukkit.inventory.ItemStack</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#fromValue(java.lang.String,java.util.UUID)" class="member-name-link">fromValue</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;base64,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;uuid)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static org.bukkit.inventory.ItemStack</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#ofPlayer(org.bukkit.OfflinePlayer)" class="member-name-link">ofPlayer</a><wbr>(org.bukkit.OfflinePlayer&nbsp;player)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Gets player head from offline player's instance</div>
+</div>
 </div>
 </div>
 </div>
@@ -130,18 +136,45 @@ loadScripts(document, 'script');</script>
 <h3>fromValue</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">org.bukkit.inventory.ItemStack</span>&nbsp;<span class="element-name">fromValue</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;base64,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;uuid)</span></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>base64</code> - Base64 string value</dd>
+<dd><code>uuid</code> - UUID of player</dd>
+<dt>Returns:</dt>
+<dd>ItemStack of skull (player head)</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="fromValue(java.lang.String)">
 <h3>fromValue</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">org.bukkit.inventory.ItemStack</span>&nbsp;<span class="element-name">fromValue</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;base64)</span></div>
+<div class="block">Gets player head from base64 value
+ Same as <a href="#fromValue(java.lang.String,java.util.UUID)"><code>fromValue(String, UUID)</code></a> but it doesn't need to provide <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link"><code>UUID</code></a>
+
+ <p><b>
+ Use this method only if you don't care, that generated player heads by this method
+ cannot stack!
+ </b></p></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>base64</code> - Base64 string value</dd>
+<dt>Returns:</dt>
+<dd>ItemStack of skull (player head)</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="ofPlayer(org.bukkit.OfflinePlayer)">
 <h3>ofPlayer</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">org.bukkit.inventory.ItemStack</span>&nbsp;<span class="element-name">ofPlayer</span><wbr><span class="parameters">(org.bukkit.OfflinePlayer&nbsp;player)</span></div>
+<div class="block">Gets player head from offline player's instance</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>player</code> - offline player to get skull of</dd>
+<dt>Returns:</dt>
+<dd>ItemStack of skull (player head)</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -150,6 +183,13 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
 </span><span class="modifiers">public static</span>&nbsp;<span class="return-type">org.bukkit.inventory.ItemStack</span>&nbsp;<span class="element-name">byName</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
 <div class="deprecation-block"><span class="deprecated-label">Deprecated.</span></div>
+<div class="block">Gets player head from player's name</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>name</code> - Name of player</dd>
+<dt>Returns:</dt>
+<dd>ItemStack of skull (player head)</dd>
+</dl>
 </section>
 </li>
 </ul>

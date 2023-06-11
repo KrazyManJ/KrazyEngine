@@ -1,6 +1,6 @@
 package me.KrazyManJ.KrazyEngine.Any.Component;
 
-import me.KrazyManJ.KrazyEngine.Any.Component.Target.TargetBuilder;
+import me.KrazyManJ.KrazyEngine.Any.Component.Target.TargetSelectorBuilder;
 import me.KrazyManJ.KrazyEngine.Any.Component.Translate.KeybindID;
 import me.KrazyManJ.KrazyEngine.Any.Text.ColorTranslator;
 import net.md_5.bungee.api.ChatColor;
@@ -14,6 +14,8 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Villager;
 import org.bukkit.inventory.ItemStack;
+
+// TODO: change from class category to be categorized by name ("makeTranslate","makeKeybind",...)
 
 @SuppressWarnings("unused")
 public final class ComponentMaker {
@@ -36,7 +38,7 @@ public final class ComponentMaker {
         private Target() {
         }
 
-        public static SelectorComponent make(TargetBuilder builder) {
+        public static SelectorComponent make(TargetSelectorBuilder builder) {
             return new SelectorComponent(builder.build());
         }
     }

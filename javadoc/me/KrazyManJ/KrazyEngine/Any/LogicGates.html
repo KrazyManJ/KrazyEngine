@@ -46,13 +46,13 @@ loadScripts(document, 'script');</script>
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
-<li><a href="#constructor-summary">Constr</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method-summary">Method</a></li>
 </ul>
 <ul class="sub-nav-list">
 <li>Detail:&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
-<li><a href="#constructor-detail">Constr</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method-detail">Method</a></li>
 </ul>
 </div>
@@ -78,22 +78,11 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">LogicGates</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Contains all logic gates functions. Logic gates are logical functions that return
+ logical response (<code>Out</code>) based on two inputs (<code>A</code>, <code>B</code>)</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
-<!-- ======== CONSTRUCTOR SUMMARY ======== -->
-<li>
-<section class="constructor-summary" id="constructor-summary">
-<h2>Constructor Summary</h2>
-<div class="caption"><span>Constructors</span></div>
-<div class="summary-table two-column-summary">
-<div class="table-header col-first">Constructor</div>
-<div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E()" class="member-name-link">LogicGates</a>()</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-</div>
-</section>
-</li>
 <!-- ========== METHOD SUMMARY =========== -->
 <li>
 <section class="method-summary" id="method-summary">
@@ -109,41 +98,37 @@ loadScripts(document, 'script');</script>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#AND(boolean,boolean)" class="member-name-link">AND</a><wbr>(boolean&nbsp;a,
  boolean&nbsp;b)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Returns true if both values are true
- <br><br></div>
+<div class="block">Returns true if both values are true.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#NAND(boolean,boolean)" class="member-name-link">NAND</a><wbr>(boolean&nbsp;a,
  boolean&nbsp;b)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Negative AND gate.</div>
+<div class="block">Negative <a href="#AND(boolean,boolean)"><code>AND(boolean, boolean)</code></a> gate - returns true if one value is true and second one false or both of values are false.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#NOR(boolean,boolean)" class="member-name-link">NOR</a><wbr>(boolean&nbsp;a,
  boolean&nbsp;b)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Negative OR gate.</div>
+<div class="block">Negative <a href="#OR(boolean,boolean)"><code>OR(boolean, boolean)</code></a> gate - returns true only if both values are false.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#OR(boolean,boolean)" class="member-name-link">OR</a><wbr>(boolean&nbsp;a,
  boolean&nbsp;b)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Returns true if one value, or both of them are true
- <br><br></div>
+<div class="block">Returns true if one value, or both of them are true.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#XNOR(boolean,boolean)" class="member-name-link">XNOR</a><wbr>(boolean&nbsp;a,
  boolean&nbsp;b)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Returns true only if both values are equal to each other
- <br><br></div>
+<div class="block">Returns true only if both values are equal to each other.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#XOR(boolean,boolean)" class="member-name-link">XOR</a><wbr>(boolean&nbsp;a,
  boolean&nbsp;b)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Returns true if single value is true only
- <br><br></div>
+<div class="block">Returns true if single value is true only.</div>
 </div>
 </div>
 </div>
@@ -157,20 +142,6 @@ loadScripts(document, 'script');</script>
 </section>
 <section class="details">
 <ul class="details-list">
-<!-- ========= CONSTRUCTOR DETAIL ======== -->
-<li>
-<section class="constructor-details" id="constructor-detail">
-<h2>Constructor Details</h2>
-<ul class="member-list">
-<li>
-<section class="detail" id="&lt;init&gt;()">
-<h3>LogicGates</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">LogicGates</span>()</div>
-</section>
-</li>
-</ul>
-</section>
-</li>
 <!-- ============ METHOD DETAIL ========== -->
 <li>
 <section class="method-details" id="method-detail">
@@ -181,8 +152,8 @@ loadScripts(document, 'script');</script>
 <h3>AND</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">AND</span><wbr><span class="parameters">(boolean&nbsp;a,
  boolean&nbsp;b)</span></div>
-<div class="block">Returns true if both values are true
- <br><br>
+<div class="block">Returns true if both values are true.
+ <br>
  <pre>
  |---|---|-----|
  | A | B | Out |
@@ -204,7 +175,7 @@ loadScripts(document, 'script');</script>
 <h3>OR</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">OR</span><wbr><span class="parameters">(boolean&nbsp;a,
  boolean&nbsp;b)</span></div>
-<div class="block">Returns true if one value, or both of them are true
+<div class="block">Returns true if one value, or both of them are true.
  <br><br>
  <pre>
  |---|---|-----|
@@ -227,8 +198,8 @@ loadScripts(document, 'script');</script>
 <h3>XOR</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">XOR</span><wbr><span class="parameters">(boolean&nbsp;a,
  boolean&nbsp;b)</span></div>
-<div class="block">Returns true if single value is true only
- <br><br>
+<div class="block">Returns true if single value is true only.
+ <br>
  <pre>
  |---|---|-----|
  | A | B | Out |
@@ -250,8 +221,8 @@ loadScripts(document, 'script');</script>
 <h3>NAND</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">NAND</span><wbr><span class="parameters">(boolean&nbsp;a,
  boolean&nbsp;b)</span></div>
-<div class="block">Negative AND gate. Returns true if one value is true and second one false or both of values are false
- <br><br>
+<div class="block">Negative <a href="#AND(boolean,boolean)"><code>AND(boolean, boolean)</code></a> gate - returns true if one value is true and second one false or both of values are false.
+ <br>
  <pre>
  |---|---|-----|
  | A | B | Out |
@@ -273,8 +244,8 @@ loadScripts(document, 'script');</script>
 <h3>NOR</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">NOR</span><wbr><span class="parameters">(boolean&nbsp;a,
  boolean&nbsp;b)</span></div>
-<div class="block">Negative OR gate. Returns true only if both values are false
- <br><br>
+<div class="block">Negative <a href="#OR(boolean,boolean)"><code>OR(boolean, boolean)</code></a> gate - returns true only if both values are false.
+ <br>
  <pre>
  |---|---|-----|
  | A | B | Out |
@@ -296,8 +267,8 @@ loadScripts(document, 'script');</script>
 <h3>XNOR</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">XNOR</span><wbr><span class="parameters">(boolean&nbsp;a,
  boolean&nbsp;b)</span></div>
-<div class="block">Returns true only if both values are equal to each other
- <br><br>
+<div class="block">Returns true only if both values are equal to each other.
+ <br>
  <pre>
  |---|---|-----|
  | A | B | Out |
