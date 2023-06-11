@@ -163,20 +163,20 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Formats all colors and formats in text, including hex colors
  
-     <a href="#formatFullLegacy(java.lang.String)"><code>formatFullLegacy(String)</code></a>
+     <a href="#formatLegacy(java.lang.String)"><code>formatLegacy(String)</code></a>
      <a href="#formatAnyHexColors(java.lang.String)"><code>formatAnyHexColors(String)</code></a>
  </div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#formatFullLegacy(java.lang.String)" class="member-name-link">formatFullLegacy</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;text)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#formatHexColors(java.lang.String,me.KrazyManJ.KrazyEngine.Any.Text.HexColorFormat)" class="member-name-link">formatHexColors</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;text,
+ <a href="HexColorFormat.html" title="enum class in me.KrazyManJ.KrazyEngine.Any.Text">HexColorFormat</a>&nbsp;from)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Formats legacy colors and formats.</div>
+<div class="block">Formats all hex colors of specified format to display in minecraft</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#formatHexColors(java.lang.String,me.KrazyManJ.KrazyEngine.Any.Text.HexColorFormat)" class="member-name-link">formatHexColors</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;text,
- <a href="HexColorFormat.html" title="enum class in me.KrazyManJ.KrazyEngine.Any.Text">HexColorFormat</a>&nbsp;from)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#formatLegacy(java.lang.String)" class="member-name-link">formatLegacy</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;text)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Formats all hex colors of specified format to display in minecraft</div>
+<div class="block">Formats legacy colors and formats.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#formatLegacyColors(java.lang.String)" class="member-name-link">formatLegacyColors</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;text)</code></div>
@@ -239,9 +239,9 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="formatFullLegacy(java.lang.String)">
-<h3>formatFullLegacy</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">formatFullLegacy</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;text)</span></div>
+<section class="detail" id="formatLegacy(java.lang.String)">
+<h3>formatLegacy</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">formatLegacy</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;text)</span></div>
 <div class="block">Formats legacy colors and formats. It combines two functions:
  <ul>
      <li><a href="#formatLegacyColors(java.lang.String)"><code>formatLegacyColors(String)</code></a></li>
@@ -307,7 +307,7 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">formatEverything</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;text)</span></div>
 <div class="block">Formats all colors and formats in text, including hex colors
  <ul>
-     <li><a href="#formatFullLegacy(java.lang.String)"><code>formatFullLegacy(String)</code></a></li>
+     <li><a href="#formatLegacy(java.lang.String)"><code>formatLegacy(String)</code></a></li>
      <li><a href="#formatAnyHexColors(java.lang.String)"><code>formatAnyHexColors(String)</code></a></li>
  </ul></div>
 <dl class="notes">

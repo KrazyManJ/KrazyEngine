@@ -35,6 +35,7 @@ public final class CommandLogFilter {
 
     /**
      * Adds command to memory of this class before registering filter
+     *
      * @param command name of command, even with or without "/" char
      * @return this object
      */
@@ -45,7 +46,7 @@ public final class CommandLogFilter {
     }
 
     /**
-     * Registers this filter
+     * Registers this filter with commands added by {@link #addCommand(String)}
      */
     public void register() {
         if (commands.size() == 0) return;

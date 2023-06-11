@@ -1,6 +1,6 @@
 package me.KrazyManJ.KrazyEngine.Any.Text;
 
-import org.apache.commons.lang3.Range;
+import me.KrazyManJ.KrazyEngine.Any.Range;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -33,20 +33,20 @@ public final class ColorTranslator {
         return text;
     }
 
-    private static @NotNull List<Range<Integer>> listAllHexColorsStartsIndexes(String text) {
-        List<Range<Integer>> starts = new ArrayList<>();
+    private static @NotNull List<Range> listAllHexColorsStartsIndexes(String text) {
+        List<Range> starts = new ArrayList<>();
         for (HexColorFormat format : HexColorFormat.values()) {
             Matcher m = format.getPattern().matcher(text);
-            while (m.find()) starts.add(Range.between(m.start(), m.end()));
+            while (m.find()) starts.add(new Range(m.start(), m.end()));
         }
         return starts;
     }
 
     private static String clearExcludingHex(@NotNull Pattern pattern, String text) {
-        List<Range<Integer>> ranges = listAllHexColorsStartsIndexes(text);
+        List<Range> ranges = listAllHexColorsStartsIndexes(text);
         Matcher m = pattern.matcher(text);
         while (m.find()) {
-            if (ranges.stream().noneMatch(r -> r.contains(m.start())))
+            if (ranges.stream().noneMatch(r -> r.isInRangeInclusive(m.start())))
                 text = text.replace(m.group(), "");
         }
         return text;
@@ -83,7 +83,7 @@ public final class ColorTranslator {
      * @param text string to be formatted
      * @return formatted text
      */
-    public static String formatFullLegacy(String text) {
+    public static String formatLegacy(String text) {
         return translateLegacy(LEGACY_FULL, text);
     }
 
@@ -128,7 +128,7 @@ public final class ColorTranslator {
     /**
      * Formats all colors and formats in text, including hex colors
      * <ul>
-     *     <li>{@link #formatFullLegacy(String)}</li>
+     *     <li>{@link #formatLegacy(String)}</li>
      *     <li>{@link #formatAnyHexColors(String)}</li>
      * </ul>
      *
@@ -136,7 +136,7 @@ public final class ColorTranslator {
      * @return formatted string
      */
     public static String formatEverything(String text) {
-        return formatFullLegacy(formatAnyHexColors(text));
+        return formatLegacy(formatAnyHexColors(text));
     }
 
     /**

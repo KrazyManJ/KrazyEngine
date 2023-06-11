@@ -8,6 +8,12 @@ public enum TargetSelectorVariable {
     ALL_ENTITIES("@e"),
     ENTITY_EXECUTING_THE_COMMAND("@s");
     final String sv;
-    public String selectorValue(){ return sv; }
-    TargetSelectorVariable(String sv) { this.sv = sv; }
+
+    public String selectorValue() {
+        return sv;
+    }
+
+    TargetSelectorVariable(String sv) {
+        this.sv = sv;
+    }
 }

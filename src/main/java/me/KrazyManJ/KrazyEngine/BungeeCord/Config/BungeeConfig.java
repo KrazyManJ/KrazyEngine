@@ -23,6 +23,10 @@ public final class BungeeConfig {
     private final Plugin plugin;
     private final String resourcePath;
 
+    public static BungeeConfig defaultConfig(Plugin plugin){
+        return new BungeeConfig(plugin,"config.yml",new File(plugin.getDataFolder(),"config.yml"));
+    }
+
     public BungeeConfig(Plugin plugin, String resourcePath, File file, boolean init){
         this.file = file;
         this.plugin = plugin;

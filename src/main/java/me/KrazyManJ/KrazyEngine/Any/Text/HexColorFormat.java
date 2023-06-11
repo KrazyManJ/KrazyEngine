@@ -6,6 +6,14 @@ import java.util.Arrays;
 import java.util.function.Function;
 import java.util.regex.Pattern;
 
+/**
+ * Enumeration of all possible formats of Hex colors. Includes:
+ * <ul>
+ *     <li>Regular expression pattern - ({@link #getPattern()})</li>
+ *     <li>Encoder for translation - ({@link #getDecoder()})</li>
+ *     <li>Decoder for translation - ({@link #getDecoder()})</li>
+ * </ul>
+ */
 @SuppressWarnings("unused")
 public enum HexColorFormat {
     /**
@@ -66,8 +74,8 @@ public enum HexColorFormat {
             chars -> "{#" + String.join("", chars) + "}"
     );
     private final Pattern pattern;
-    private final Function<String, @Range(from = 6, to = 6) String[]> decoder;
-    private final Function<@Range(from = 6, to = 6) String[], String> encoder;
+    private final Function<String, String[]> decoder;
+    private final Function<String[], String> encoder;
 
     HexColorFormat(
             Pattern pattern,
@@ -79,18 +87,38 @@ public enum HexColorFormat {
         this.decoder = decoder;
     }
 
+    /**
+     * Gets pattern for finding colors
+     * @return compiled pattern of color format
+     */
     public Pattern getPattern() {
         return pattern;
     }
 
+    /**
+     * Gets function of decoding specifing colors. This decoder function decodes string of color only
+     * and returns array in size of 6 elements of each hex value <code>[R,R,G,G,B,B]</code>.
+     *
+     * @return decoder function
+     */
     public Function<String, @Range(from = 6, to = 6) String[]> getDecoder() {
         return decoder;
     }
 
+    /**
+     * Gets function of encoding specifying colors. This encoder function takes data decoded by function
+     * {@link #getDecoder()} and encode it into specified color format
+     *
+     * @return encoder function
+     */
     public Function<@Range(from = 6, to = 6) String[], String> getEncoder() {
         return encoder;
     }
 
+    /**
+     * Gets every color format except {@link #FORMATTED} one
+     * @return All hex colors specified above
+     */
     public static HexColorFormat[] nonDefaultValues() {
         return Arrays.copyOfRange(values(), 1, values().length);
     }

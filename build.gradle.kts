@@ -1,24 +1,15 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-
 plugins {
     `java-library`
     `maven-publish`
-    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 repositories {
     mavenLocal()
-    maven {
-        url = uri("https://repo.maven.apache.org/maven2/")
-    }
-    maven {
-        url = uri("https://repo.codemc.org/repository/maven-public/")
-    }
+    mavenCentral()
 }
 
 dependencies {
-    api("org.jetbrains:annotations:24.0.1")
-    api("io.github.bananapuncher714:nbteditor:7.18.5")
+    implementation("org.jetbrains:annotations:24.0.1")
     compileOnly("org.spigotmc:spigot:1.19.4-R0.1-SNAPSHOT")
     compileOnly("net.md-5:bungeecord-api:1.19-R0.1-SNAPSHOT")
 }
@@ -30,29 +21,21 @@ description = "KrazyEngine"
 fun excludingLib(compiled: Boolean): List<String> {
     val classifier = if (compiled) "class" else "java"
     return listOf(
-        "**/*.yml",
-        "me/KrazyManJ/KrazyEngine/BungeeMain.${classifier}",
-        "me/KrazyManJ/KrazyEngine/SpigotMain.${classifier}"
+            "**/*.yml",
+            "me/KrazyManJ/KrazyEngine/BungeeMain.${classifier}",
+            "me/KrazyManJ/KrazyEngine/SpigotMain.${classifier}"
     )
 }
 
 java {
     withJavadocJar()
-    withSourcesJar()
 }
 
-fun registerShadowJarTask(classifier: String ,excludes: List<String>): RegisteringDomainObjectDelegateProviderWithTypeAndAction<out TaskContainer, ShadowJar> {
-    return tasks.registering(ShadowJar::class){
-        from(project.extensions.findByType(JavaPluginExtension::class)?.sourceSets?.main?.get()?.output)
-        configurations = listOf(project.configurations.runtimeClasspath.get())
-        archiveClassifier.set(classifier)
-        exclude("META-INF/INDEX.LIST", "META-INF/*.SF", "META-INF/*.DSA", "META-INF/*.RSA")
-        exclude(excludes)
-    }
-}
 
-val libJar by registerShadowJarTask("",excludingLib(true))
-val pluginJar by registerShadowJarTask("plugin", listOf())
+val pluginJar by tasks.registering(Jar::class) {
+    from(sourceSets.main.get().output)
+    archiveClassifier.set("plugin")
+}
 
 tasks {
     withType<JavaCompile> {
@@ -62,16 +45,13 @@ tasks {
         options.encoding = "UTF-8"
     }
     jar {
-        enabled = false
+        dependsOn(pluginJar)
+        archiveClassifier.set("")
+        exclude(excludingLib(false))
     }
     javadoc {
         destinationDir = file("${rootProject.rootDir}/javadoc")
         exclude(excludingLib(false))
-    }
-    shadowJar {
-        dependsOn(libJar, pluginJar, getByName("javadocJar"))
-        group = "custom"
-        enabled = false
     }
     publishToMavenLocal {
         group = "custom"
@@ -81,6 +61,5 @@ tasks {
 publishing {
     publications.create<MavenPublication>("maven") {
         from(components["java"])
-        artifact(libJar.get())
     }
 }

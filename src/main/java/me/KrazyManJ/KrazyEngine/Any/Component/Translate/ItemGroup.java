@@ -17,9 +17,14 @@ public enum ItemGroup {
     ITEMGROUP_BREWING("itemGroup.brewing"),
     ITEMGROUP_MATERIALS("itemGroup.materials"),
     ITEMGROUP_INVENTORY("itemGroup.inventory"),
-    ITEMGROUP_HOTBAR("itemGroup.hotbar")
-    ;
+    ITEMGROUP_HOTBAR("itemGroup.hotbar");
     private final String id;
-    ItemGroup(String id) {this.id = id;}
-    public String getId() {return id;}
+
+    ItemGroup(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
 }

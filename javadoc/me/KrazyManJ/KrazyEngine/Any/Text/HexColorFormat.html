@@ -84,6 +84,12 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public enum </span><span class="element-name type-name-label">HexColorFormat</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Enum.html" title="class or interface in java.lang" class="external-link">Enum</a>&lt;<a href="HexColorFormat.html" title="enum class in me.KrazyManJ.KrazyEngine.Any.Text">HexColorFormat</a>&gt;</span></div>
+<div class="block">Enumeration of all possible formats of Hex colors. Includes:
+ <ul>
+     <li>Regular expression pattern - (<a href="#getPattern()"><code>getPattern()</code></a>)</li>
+     <li>Encoder for translation - (<a href="#getDecoder()"><code>getDecoder()</code></a>)</li>
+     <li>Decoder for translation - (<a href="#getDecoder()"><code>getDecoder()</code></a>)</li>
+ </ul></div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -149,16 +155,24 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Function.html" title="class or interface in java.util.function" class="external-link">Function</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr>@Range(from=6L,to=6L) <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[]&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDecoder()" class="member-name-link">getDecoder</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Gets function of decoding specifing colors.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Function.html" title="class or interface in java.util.function" class="external-link">Function</a>&lt;@Range(from=6L,to=6L) <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[],<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getEncoder()" class="member-name-link">getEncoder</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Gets function of encoding specifying colors.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Pattern.html" title="class or interface in java.util.regex" class="external-link">Pattern</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPattern()" class="member-name-link">getPattern</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Gets pattern for finding colors</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="HexColorFormat.html" title="enum class in me.KrazyManJ.KrazyEngine.Any.Text">HexColorFormat</a>[]</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#nonDefaultValues()" class="member-name-link">nonDefaultValues</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Gets every color format except <a href="#FORMATTED"><code>FORMATTED</code></a> one</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="HexColorFormat.html" title="enum class in me.KrazyManJ.KrazyEngine.Any.Text">HexColorFormat</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#valueOf(java.lang.String)" class="member-name-link">valueOf</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
@@ -283,24 +297,46 @@ not permitted.)</div>
 <section class="detail" id="getPattern()">
 <h3>getPattern</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Pattern.html" title="class or interface in java.util.regex" class="external-link">Pattern</a></span>&nbsp;<span class="element-name">getPattern</span>()</div>
+<div class="block">Gets pattern for finding colors</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>compiled pattern of color format</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getDecoder()">
 <h3>getDecoder</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Function.html" title="class or interface in java.util.function" class="external-link">Function</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr>@Range(from=6L,to=6L) <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[]&gt;</span>&nbsp;<span class="element-name">getDecoder</span>()</div>
+<div class="block">Gets function of decoding specifing colors. This decoder function decodes string of color only
+ and returns array in size of 6 elements of each hex value <code>[R,R,G,G,B,B]</code>.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>decoder function</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getEncoder()">
 <h3>getEncoder</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Function.html" title="class or interface in java.util.function" class="external-link">Function</a>&lt;@Range(from=6L,to=6L) <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[],<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name">getEncoder</span>()</div>
+<div class="block">Gets function of encoding specifying colors. This encoder function takes data decoded by function
+ <a href="#getDecoder()"><code>getDecoder()</code></a> and encode it into specified color format</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>encoder function</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="nonDefaultValues()">
 <h3>nonDefaultValues</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="HexColorFormat.html" title="enum class in me.KrazyManJ.KrazyEngine.Any.Text">HexColorFormat</a>[]</span>&nbsp;<span class="element-name">nonDefaultValues</span>()</div>
+<div class="block">Gets every color format except <a href="#FORMATTED"><code>FORMATTED</code></a> one</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>All hex colors specified above</dd>
+</dl>
 </section>
 </li>
 </ul>

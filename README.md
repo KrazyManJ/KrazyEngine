@@ -35,3 +35,27 @@
 This library uses a few libraries, that are not created by myself, so here is a full list:
 
 - [BananaPuncher714/NBTEditor](https://github.com/BananaPuncher714/NBTEditor)
+
+<h2>Use in local build (gradle)</h2>
+
+```kotlin
+plugins {
+    id("com.github.johnrengelman.shadow") version "8.1.1"
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    implementation("me.KrazyManJ:KrazyEngine:1.0.0")
+}
+
+tasks {
+    shadowJar {
+        archiveClassifier.set("")
+        minimize() //Use only classes that are used in project
+    }
+}
+```
