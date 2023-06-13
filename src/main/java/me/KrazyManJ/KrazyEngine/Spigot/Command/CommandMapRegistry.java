@@ -1,6 +1,6 @@
 package me.KrazyManJ.KrazyEngine.Spigot.Command;
 
-import me.KrazyManJ.KrazyEngine.Any.Merger;
+import me.KrazyManJ.KrazyEngine.Any.Collection.Merger;
 import me.KrazyManJ.KrazyEngine.Core.ReflectionHandler;
 import me.KrazyManJ.KrazyEngine.Core.ReflectionUsed;
 import org.bukkit.Bukkit;

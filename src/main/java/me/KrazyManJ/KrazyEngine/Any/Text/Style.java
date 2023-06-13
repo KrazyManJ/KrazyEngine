@@ -1,11 +1,13 @@
 package me.KrazyManJ.KrazyEngine.Any.Text;
 
+import org.jetbrains.annotations.NotNull;
+
 @SuppressWarnings("unused")
 public final class Style {
 
-    @Deprecated private Style() {}
+    private Style() {}
 
-    public static String fancyMinecraftText(String text){
+    public static @NotNull String fancyMinecraftText(@NotNull String text){
         return text.replaceAll("a", "ᴀ")
                 .replaceAll("b", "ʙ").replaceAll("c", "ᴄ").replaceAll("d", "ᴅ").replaceAll("e", "ᴇ")
                 .replaceAll("f", "ꜰ").replaceAll("g", "ɢ").replaceAll("h", "ʜ").replaceAll("i", "ɪ")

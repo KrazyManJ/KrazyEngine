@@ -1,7 +1,6 @@
 package me.KrazyManJ.KrazyEngine.Any;
 
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import java.io.BufferedReader;
@@ -15,7 +14,8 @@ import java.util.stream.Collectors;
 @SuppressWarnings("unused")
 public final class APIFetcher {
 
-    @Deprecated private APIFetcher() {}
+    private APIFetcher() {
+    }
 
     public static JsonElement fetchJson(String url) {
         try {
@@ -23,12 +23,12 @@ public final class APIFetcher {
             URLConnection request = u.openConnection();
             request.connect();
             return JsonParser.parseReader(new InputStreamReader((InputStream) request.getContent()));
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
     }
+
     public static String fetchString(String url) {
         try {
             URL u = new URL(url);

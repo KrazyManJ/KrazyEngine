@@ -1,5 +1,6 @@
 io.github.bananapuncher714.nbteditor
 me.KrazyManJ.KrazyEngine.Any
+me.KrazyManJ.KrazyEngine.Any.Collection
 me.KrazyManJ.KrazyEngine.Any.Cooldown
 me.KrazyManJ.KrazyEngine.Any.ChatComponent
 me.KrazyManJ.KrazyEngine.Any.ChatComponent.Target
@@ -8,6 +9,7 @@ me.KrazyManJ.KrazyEngine.Any.Log
 me.KrazyManJ.KrazyEngine.Any.Regex
 me.KrazyManJ.KrazyEngine.Any.Text
 me.KrazyManJ.KrazyEngine.Any.Tree
+me.KrazyManJ.KrazyEngine.BungeeCord
 me.KrazyManJ.KrazyEngine.BungeeCord.Command.TabBuilder
 me.KrazyManJ.KrazyEngine.BungeeCord.File
 me.KrazyManJ.KrazyEngine.BungeeCord.File.Config

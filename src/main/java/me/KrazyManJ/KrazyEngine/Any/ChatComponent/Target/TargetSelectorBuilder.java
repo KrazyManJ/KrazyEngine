@@ -1,16 +1,12 @@
 package me.KrazyManJ.KrazyEngine.Any.ChatComponent.Target;
 
-import org.bukkit.GameMode;
-import org.bukkit.entity.EntityType;
-import org.bukkit.scoreboard.Objective;
-import org.bukkit.scoreboard.Team;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
 // TODO: finish documentation
+
 /**
  * Creates Target Selector, which is string in format
  * <code>@&lt;variable&gt;[&lt;argument&gt;=&lt;value&gt;,&lt;argument&gt;=&lt;value&gt;,...]</code>.
@@ -25,33 +21,25 @@ import java.util.stream.Collectors;
 @SuppressWarnings({"unused", "UnusedReturnValue"})
 public final class TargetSelectorBuilder {
 
-    private TargetSelectorVariable selector;
+    private final TargetSelectorVariable selector;
     private final HashMap<String, Object> values = new HashMap<>();
-    private final HashMap<Objective, TargetRange> scoreValues = new HashMap<>();
+    private final HashMap<String, TargetRange> scoreValues = new HashMap<>();
     private final List<String> tagValues = new ArrayList<>();
 
     public TargetSelectorBuilder(TargetSelectorVariable target) {
         this.selector = target;
     }
 
-    public TargetSelectorBuilder setSelector(TargetSelectorVariable selector) {
-        this.selector = selector;
-        return this;
-    }
-
-    private boolean hasNullValues() {
-        return values.isEmpty() && scoreValues.isEmpty() && tagValues.isEmpty();
-    }
-
     public String build() {
-        if (hasNullValues()) return selector.selectorValue();
+        if (values.isEmpty() && scoreValues.isEmpty() && tagValues.isEmpty())
+            return selector.selectorValue();
         List<String> components = new ArrayList<>();
         if (!values.isEmpty())
             components.add(values.entrySet().stream().map(e -> e.getKey() + "=" + e.getValue()).collect(Collectors.joining(",")));
         if (!scoreValues.isEmpty())
-            components.add("scores={" + scoreValues.entrySet().stream().map(e -> e.getKey().getName() + "=" + e.getValue().toString()).collect(Collectors.joining(",")) + "}");
+            components.add("scores={" + scoreValues.entrySet().stream().map(e -> e.getKey() + "=" + e.getValue().toString()).collect(Collectors.joining(",")) + "}");
         if (!tagValues.isEmpty()) components.add("tag=" + String.join(",tag=", tagValues));
-        return selector.selectorValue() + "["+String.join(",",components)+"]";
+        return selector.selectorValue() + "[" + String.join(",", components) + "]";
     }
 
     @Override
@@ -86,18 +74,9 @@ public final class TargetSelectorBuilder {
 
     //Scores
 
-    public TargetSelectorBuilder addScoreValue(Objective objective, int value) {
-        scoreValues.put(objective, new TargetRange(value));
+    public TargetSelectorBuilder addScoreValue(String objective, TargetRange range) {
+        scoreValues.put(objective, range);
         return this;
-    }
-
-    public TargetSelectorBuilder addScoreValue(Objective objective, int lowest, int highest) {
-        scoreValues.put(objective, new TargetRange(lowest, highest));
-        return this;
-    }
-
-    public HashMap<Objective, TargetRange> getScoreValues() {
-        return scoreValues;
     }
 
     //Tags
@@ -112,18 +91,8 @@ public final class TargetSelectorBuilder {
         return this;
     }
 
-    public List<String> getTagValues() {
-        return tagValues;
-    }
-
     //Team
 
-    public TargetSelectorBuilder setTeam(Team team) {
-        values.put("team", team.getName());
-        return this;
-    }
-
-    @Deprecated
     public TargetSelectorBuilder setTeam(String team) {
         values.put("team", team);
         return this;
@@ -188,13 +157,13 @@ public final class TargetSelectorBuilder {
 
     //Type
 
-    public TargetSelectorBuilder setType(EntityType type) {
-        values.put("type", type.getKey().getKey());
+    public TargetSelectorBuilder setType(String entityType) {
+        values.put("type", entityType);
         return this;
     }
 
-    public TargetSelectorBuilder setType(EntityType type, boolean bool) {
-        values.put("type", (bool ? "" : "!") + type.getKey().getKey());
+    public TargetSelectorBuilder setType(String entityType, boolean bool) {
+        values.put("type", (bool ? "" : "!") + entityType);
         return this;
     }
 

@@ -31,6 +31,16 @@ public class ComponentMaker {
     }
 
     public static @NotNull TextComponent makeText(String text) {
-        return (TextComponent) ComponentUtils.toSingle(TextComponent.fromLegacyText(ColorTranslator.formatEverything(text)));
+        return (TextComponent) toSingle(TextComponent.fromLegacyText(ColorTranslator.formatEverything(text)));
+    }
+
+    public static BaseComponent toSingle(BaseComponent[] components){
+        BaseComponent rc = new TextComponent("");
+        for (BaseComponent c : components) rc.addExtra(c);
+        return rc;
+    }
+
+    public static BaseComponent[] toArray(BaseComponent component){
+        return new BaseComponent[]{component};
     }
 }

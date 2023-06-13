@@ -1,4 +1,6 @@
-package me.KrazyManJ.KrazyEngine.Any;
+package me.KrazyManJ.KrazyEngine.Any.Collection;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 import java.util.List;
@@ -10,15 +12,15 @@ public final class Randomizer {
     private Randomizer() {
     }
 
-    public static <T> T outOf(T[] elements) {
+    public static <T> T outOf(T @NotNull [] elements) {
         return elements[new Random().nextInt(elements.length)];
     }
 
-    public static <T> T outOf(List<T> elemList) {
+    public static <T> T outOf(@NotNull List<T> elemList) {
         return elemList.get(new Random().nextInt(elemList.size()));
     }
 
-    public static <T> T outOf(Collection<T> collection) {
+    public static <T> T outOf(@NotNull Collection<T> collection) {
         return outOf(collection.toArray((T[]) new Object[]{}));
     }
 

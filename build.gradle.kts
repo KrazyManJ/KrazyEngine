@@ -31,6 +31,7 @@ fun excludingLib(compiled: Boolean): List<String> {
 
 java {
     withJavadocJar()
+    withSourcesJar()
 }
 
 val localProperties = Properties()

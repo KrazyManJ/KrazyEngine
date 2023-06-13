@@ -1,4 +1,4 @@
-package me.KrazyManJ.KrazyEngine.Any;
+package me.KrazyManJ.KrazyEngine.Any.Collection;
 
 import org.jetbrains.annotations.NotNull;
 

@@ -1,6 +1,6 @@
 package me.KrazyManJ.KrazyEngine.Spigot.Recipe;
 
-import me.KrazyManJ.KrazyEngine.Any.Merger;
+import me.KrazyManJ.KrazyEngine.Any.Collection.Merger;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;

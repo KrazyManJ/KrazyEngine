@@ -8,7 +8,6 @@ public final class SpigotMain extends JavaPlugin {
     @Override
     public void onEnable() {
         super.onEnable();
-
     }
 
     @Override
