@@ -37,8 +37,8 @@ public final class GenericNode<T> extends Node<T,GenericNode<T>>{
 
     public List<GenericNode<T>> getSiblings(){
         if (isRoot()) return new ArrayList<>();
-        assert getParent() != null;
-        return getParent().getChildren().stream().filter(f->!f.equals(this)).toList();
+        assert getParent().isPresent();
+        return getParent().get().getChildren().stream().filter(f->!f.equals(this)).toList();
     }
 
     @Override

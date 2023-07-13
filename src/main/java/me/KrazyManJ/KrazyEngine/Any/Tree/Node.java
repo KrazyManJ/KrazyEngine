@@ -6,6 +6,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @SuppressWarnings({"unused", "unchecked", "UnusedReturnValue"})
 public abstract class Node<T,N extends Node<T,?>> {
@@ -30,7 +31,7 @@ public abstract class Node<T,N extends Node<T,?>> {
     }
 
     public final boolean isRoot(){
-        return parent == null;
+        return getParent().isEmpty();
     }
 
     public final boolean isLeaf(){
@@ -39,16 +40,17 @@ public abstract class Node<T,N extends Node<T,?>> {
         }
         return true;
     }
-    public final @Nullable N getParent(){
-        return parent;
+    public final Optional<N> getParent(){
+        return Optional.ofNullable(parent);
     }
 
     public final int depth(){
         N node = (N) this;
         int i = 0;
         while (true){
-            if (node != null && !node.isRoot()) {
-                node = (N) node.getParent();
+            Optional<N> parent = (Optional<N>) node.getParent();
+            if (parent.isPresent()) {
+                node = (N) parent.get();
                 i++;
             }
             else break;

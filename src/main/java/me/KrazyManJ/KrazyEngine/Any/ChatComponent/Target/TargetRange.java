@@ -3,6 +3,8 @@ package me.KrazyManJ.KrazyEngine.Any.ChatComponent.Target;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Optional;
+
 
 /**
  * Class used in {@link TargetSelectorBuilder} to define ranges
@@ -52,8 +54,8 @@ final class TargetRange {
         return this;
     }
 
-    public @Nullable Float getHighest() {
-        return highest;
+    public Optional<Float> getHighest() {
+        return Optional.ofNullable(highest);
     }
 
     public TargetRange setHighest(@Nullable Float highest) {

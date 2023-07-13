@@ -11,7 +11,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("unused")
-public class StonecuttingRecipeHolder extends ARecipeHolder {
+public final class StonecuttingRecipeHolder extends ARecipeHolder {
 
     private RecipeChoice input;
 
