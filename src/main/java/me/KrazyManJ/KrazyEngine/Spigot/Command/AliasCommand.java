@@ -30,11 +30,11 @@ public final class AliasCommand extends Command {
     }
 
     public AliasCommand(String alias, String commandLine){
-        this(alias, (args) -> commandLine);
+        this(alias, (args) -> commandLine+" "+String.join(" ",args));
     }
 
     public AliasCommand(String alias, String commandLine, String permission){
-        this(alias, (args) -> commandLine, permission);
+        this(alias, (args) -> commandLine+" "+String.join(" ",args), permission);
     }
 
     public AliasCommand setTabCompleter(BiFunction<CommandSender, String[], List<String>> completer){
