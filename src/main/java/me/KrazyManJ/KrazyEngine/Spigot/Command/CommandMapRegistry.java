@@ -6,6 +6,7 @@ import me.KrazyManJ.KrazyEngine.Core.ReflectionUsed;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.SimpleCommandMap;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -56,6 +57,15 @@ public final class CommandMapRegistry {
     public static synchronized void register(String id, Command commandExecutor, String permission) {
         commandExecutor.setPermission(permission);
         register(id, commandExecutor);
+    }
+
+    public static synchronized void register(JavaPlugin plugin, Command command){
+        register(plugin.getName(),command);
+    }
+
+    public static synchronized void register(JavaPlugin plugin, Command command, String permission){
+        command.setPermission(permission);
+        register(plugin,command);
     }
 
     public static Command getCommand(String commandLabel) {
